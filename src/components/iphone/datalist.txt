@@ -1,0 +1,25 @@
+Aeris weather:
+
+ob.tempC	(number) Temperature in Celsius. Null if not available.
+
+ob.tempF	(number) Temperature in Fahrenheit. Null if not available.
+
+ob.humidity	(number) Relative humidity. Null if not available.
+
+ob.pressureIN	(number) Mean Sea Level Pressure (MSLP) in inches of mercury. Null if not available.
+
+ob.windSpeedMPH	(number) Wind speed in miles per hour. Null if not available.
+
+ob.windDirDEG	(number) Wind direction in degrees. Null if not available.
+
+ob.visibilityMI	(number) Visibility in miles. Null if not available.
+
+ob.weatherCoded (string) The coded weather. See the Coded Weather page for code options.
+
+ob.cloudsCoded (string) The coded cloud coverage. See the Coded Weather page for code options.
+
+ob.sunrise	(number) Timestamp of sunrise for the observation location. NOTE: If no sunrise (Midnight sun / polar night) a boolean false will be returned
+
+ob.sunset	(number) Timestamp of sunset for the observation location. NOTE: If no sunset (Midnight sun / polar night) a boolean false will be returned
+
+ob.precipMM	(number) The precipitation, in millimeters, as provided by station. Null if not available. NOTE: Some stations may report this value differently.
