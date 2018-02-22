@@ -65,13 +65,14 @@ export default class Iphone extends Component {
 	}
 
 	
-
+	lat;
+	lon;
 
 	parseResponseLocation = (parsed_json) =>
 	{
 		console.log(parsed_json);
-		 var lat = parsed_json.lat;
-		 var lon = parsed_json.lon;
+		 this.lat = parsed_json.lat;
+		 this.lon = parsed_json.lon;
 
 
 		var city = parsed_json.city;
@@ -84,7 +85,7 @@ export default class Iphone extends Component {
 		});
 
 		$.ajax({
-			url: "http://api.aerisapi.com/observations/closest?p="+lat+","+lon+"&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO",
+			url: "http://api.aerisapi.com/observations/closest?p="+this.lat+","+this.lon+"&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO",
 			dataType: "jsonp",
 			success : this.parseResponse,
 			error : function(req, err){ console.log('API call failed 2' + err); }
@@ -123,7 +124,25 @@ export default class Iphone extends Component {
 			visibility: visibility,
 			windSpeed: windSpeed,
 			//precProp: precProp
-		});      
+		}); 
+
+		var url = "http://api.aerisapi.com/sunmoon/?p="+this.lat+","+this.lon+"&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO";
+
+		$.ajax({
+			url: url,
+
+			dataType: "jsonp",
+			success : this.parseResponseMoon,
+			error : function(req, err){ console.log('API call failed 3' + err); }
+		});     
+	}
+
+	parseResponseMoon = (parse_json) =>
+	{
+		console.log(parse_json);
+
+
+
 	}
 
 	windDirectionTypes = 
