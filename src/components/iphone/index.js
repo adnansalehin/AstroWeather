@@ -41,7 +41,18 @@ export default class Iphone extends Component {
 	render() {
 		// check if temperature data is fetched, if so add the sign styling to the page
 		const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
-		
+
+
+		<div id="mySidenav" class="sidenav">
+		  <a href="javascript:void(0)" class="closeButton" onclick="closeNav()">&times;</a>
+		  <a href="#">idk</a>
+		  <a href="#">idk</a>
+		  <a href="#">Change unit preferences</a>
+		  <a href="#">Contact/Help</a>
+		</div>
+
+		<span onclick="openNav()">open</span>
+
 		// display all weather data
 		return (
 			<div class={ style.container }>
@@ -58,7 +69,7 @@ export default class Iphone extends Component {
 					<span class={ style.conditions }>Precipitation Probability: { this.state.precProp }%</span>
 				</div>
 				<div class={ style.details }></div>
-				
+
 			</div>
 		);
 	}
@@ -67,7 +78,7 @@ export default class Iphone extends Component {
 		// var location = parsed_json['current_observation']['display_location']['city'];
 		// var temp_c = parsed_json['current_observation']['temp_c'];
 		// var conditions = parsed_json['current_observation']['weather'];
-		console.log(parsed_json);
+
 		var location = parsed_json.SiteRep.DV.Location;
 		var period = location.Period[0];
 		var temp_c = period.Rep[0].T;
@@ -91,10 +102,10 @@ export default class Iphone extends Component {
 			visibility: visibility,
 			windSpeed: windSpeed,
 			precProp: precProp
-		});      
+		});
 	}
 
-	weatherTypes = 
+	weatherTypes =
 	{
 	    "0":"Clear night",
 	    "1":"Sunny day",
@@ -129,7 +140,7 @@ export default class Iphone extends Component {
 	    "30":"Thunder"
 	}
 
-	windDirectionTypes = 
+	windDirectionTypes =
 	{
 		"N":"North",
 		"NNE":"North North East",
