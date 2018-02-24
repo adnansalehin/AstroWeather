@@ -34,12 +34,7 @@ export default class Iphone extends Component {
 			error : function(req, err){ console.log('API call failed 1' + err); }
 		});
 
-		$.ajax({
-			url: "http://api.aerisapi.com/observations/closest?p="+lon+","+lat+"&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO",
-			dataType: "jsonp",
-			success : this.parseResponse,
-			error : function(req, err){ console.log('API call failed 2' + err); }
-		});
+		
 
 	}
 
@@ -69,12 +64,15 @@ export default class Iphone extends Component {
 		);
 	}
 
-
+	
+	lat;
+	lon;
 
 	parseResponseLocation = (parsed_json) =>
 	{
-		var lat = parsed_json.lat;
-		var lon = parsed_json.lon;
+		console.log(parsed_json);
+		 this.lat = parsed_json.lat;
+		 this.lon = parsed_json.lon;
 
 
 		var city = parsed_json.city;
@@ -83,19 +81,26 @@ export default class Iphone extends Component {
 
 		this.setState({
 			locate: city,
-			lon: lon,
-			lat: lat
 
 		});
 
+		$.ajax({
+			url: "http://api.aerisapi.com/observations/closest?p="+this.lat+","+this.lon+"&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO",
+			dataType: "jsonp",
+			success : this.parseResponse,
+			error : function(req, err){ console.log('API call failed 2' + err); }
+		});
+
 	}
+
+
 
 	parseResponse = (parsed_json) => {
 		// var location = parsed_json['current_observation']['display_location']['city'];
 		// var temp_c = parsed_json['current_observation']['temp_c'];
 		// var conditions = parsed_json['current_observation']['weather'];
 		console.log(parsed_json);
-		var path = parsed_json.response.ob;
+		var path = parsed_json.response[0].ob;
 		
 		//var period = location.Period[0];
 		var temp_c = path.tempC;
@@ -113,13 +118,51 @@ export default class Iphone extends Component {
 			temp: temp_c,
 			cond : weatherType,
 			//feels: feelsLike,
-			windDirection: windDirection,
+			windDirection: this.windDirectionTypes[windDirection],
 			humidity: humidity,
 			//windGust: windGust,
 			visibility: visibility,
 			windSpeed: windSpeed,
 			//precProp: precProp
-		});      
+		}); 
+
+		var url = "http://api.aerisapi.com/sunmoon/?p="+this.lat+","+this.lon+"&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO";
+
+		$.ajax({
+			url: url,
+
+			dataType: "jsonp",
+			success : this.parseResponseMoon,
+			error : function(req, err){ console.log('API call failed 3' + err); }
+		});     
+	}
+
+	parseResponseMoon = (parse_json) =>
+	{
+		console.log(parse_json);
+
+
+
+	}
+
+	windDirectionTypes = 
+	{
+		"N":"North",
+		"NNE":"North North East",
+		"NE":"North East",
+		"ENE":"East North East",
+		"E":"East",
+		"ESE":"East South East",
+		"SE":"South East",
+		"SSE":"South South East",
+		"S":"South",
+		"SSW":"South South West",
+		"SW":"South West",
+		"WSW":"West South West",
+		"W":"West South West",
+		"WNW":"West North West",
+		"NW":"North West",
+		"NNW":"North North West"
 	}
 
 }
