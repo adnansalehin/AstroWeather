@@ -1,0 +1,50 @@
+@color_1: #000000;
+@color_2: black;
+@background_color_1: #878787;
+@background_color_2: lightgrey;
+@background_color_3: #b8d8db;
+@background_color_4: black;
+
+.menuNav {
+	height: 40%;
+	width: 0px;
+	position: fixed;
+	z-index: 99;
+	top: 0px;
+	background-color: @background_color_1;
+	overflow-x: hidden;
+	padding-top: 50px;
+	transition: 0.8s;
+	transition-timing-function: ease;
+	.closeButton {
+		position: absolute;
+		top: 0px;
+		right: 20px;
+		font-size: 45px;
+		color: @color_2;
+		text-decoration: none;
+	}
+}
+.links {
+	a {
+		padding: 8px 10px;
+		font-size: 25px;
+		color: @color_1;
+		display: block;
+		border-left: 6px solid darkcyan;
+		background-color: @background_color_2;
+		text-decoration: none;
+		transition: 0.3s;
+		&:active {
+			background-color: @background_color_3;
+		}
+	}
+}
+
+.openButton {
+	width: 30px;
+	height: 3px;
+	background-color: @background_color_4;
+	margin: 7px;
+	z-index: 99;
+}
