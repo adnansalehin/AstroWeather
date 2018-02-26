@@ -30,18 +30,16 @@ export default class Iphone extends Component {
 		$.ajax({
 			url: "http://ip-api.com/json",
 			dataType: "json",
-			success : this.parseResponseLocation,
-			error : function(req, err){ console.log('API call failed 1' + err); }
+			success: this.parseResponseLocation,
+			error: function(req, err){ console.log('API call failed 1' + err); }
 		});
-
-		
 
 	}
 
 	// the main render method for the iphone component
 	render() {
 		// check if temperature data is fetched, if so add the sign styling to the page
-		const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
+		const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}`: style.temperature;
 		
 		// display all weather data
 		return (
@@ -49,13 +47,16 @@ export default class Iphone extends Component {
 				<div class={ style.header }>
 					<div class={ style.city }>{ this.state.locate }</div>
 					<div class={ style.conditions }>{ this.state.cond }</div>
-					<span class={ style.conditions }>Actual Temperature: { this.state.temp }</span>
+					<span class={ style.conditions }>Actual Temperature: { this.state.temp } °C </span>
 					
 					<span class={ style.conditions }>Wind Direction: { this.state.windDirection }</span>
 					<span class={ style.conditions }>Humidity: { this.state.humidity }%</span>
 					
 					<span class={ style.conditions }>Visibility: { this.state.visibility }miles</span>
 					<span class={ style.conditions }>Wind Speed: { this.state.windSpeed }mph</span>
+					<span class={ style.conditions }>Moon Phase: { this.state.moonPhase }</span>
+					<span class={ style.conditions }>lon: { this.lon } lat:{ this.lat } </span>
+
 				
 				</div>
 				<div class={ style.details }></div>
@@ -64,7 +65,6 @@ export default class Iphone extends Component {
 		);
 	}
 
-	
 	lat;
 	lon;
 
@@ -77,23 +77,18 @@ export default class Iphone extends Component {
 
 		var city = parsed_json.city;
 
-		
-
 		this.setState({
 			locate: city,
-
 		});
 
 		$.ajax({
 			url: "http://api.aerisapi.com/observations/closest?p="+this.lat+","+this.lon+"&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO",
 			dataType: "jsonp",
-			success : this.parseResponse,
-			error : function(req, err){ console.log('API call failed 2' + err); }
+			success: this.parseResponse,
+			error: function(req, err){ console.log('API call failed 2' + err); }
 		});
 
 	}
-
-
 
 	parseResponse = (parsed_json) => {
 		// var location = parsed_json['current_observation']['display_location']['city'];
@@ -112,11 +107,15 @@ export default class Iphone extends Component {
 		var visibility = path.visibilityMI;
 		var windSpeed = path.windSpeedMPH;
 		//var precProp = period.Rep[0].Pp;
+		//var moonPhase = path.moonPhase;
+		
+
+
 		// set states for fields so they could be rendered later on
 		this.setState({
 			
 			temp: temp_c,
-			cond : weatherType,
+			cond: weatherType,
 			//feels: feelsLike,
 			windDirection: this.windDirectionTypes[windDirection],
 			humidity: humidity,
@@ -124,23 +123,32 @@ export default class Iphone extends Component {
 			visibility: visibility,
 			windSpeed: windSpeed,
 			//precProp: precProp
+			//moonPhase: moonPhase
 		}); 
+		
+		//old one
+		//var url = "http://api.aerisapi.com/sunmoon/?p="+this.lat+","+this.lon+"&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO";
 
-		var url = "http://api.aerisapi.com/sunmoon/?p="+this.lat+","+this.lon+"&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO";
+		var url = "http://api.aerisapi.com/sunmoon/moonphases/"+this.lat+","+this.lon+"?limit=4&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO";
 
 		$.ajax({
 			url: url,
-
 			dataType: "jsonp",
-			success : this.parseResponseMoon,
-			error : function(req, err){ console.log('API call failed 3' + err); }
-		});     
+			success: this.parseResponseMoon,
+			error: function(req, err){ console.log('API call failed 3' + err); }
+		});
 	}
 
-	parseResponseMoon = (parse_json) =>
+	parseResponseMoon = (parsed_json) =>
 	{
-		console.log(parse_json);
-
+		/*
+		 * Rsponse body details: https://www.aerisweather.com/support/docs/api/reference/endpoints/sunmoon-moonphases/
+		 * at bottom of page.
+		 * Returns the next 4 cycles. 0 is used here to get cycle 1.
+		*/
+		var moonPhase = "new moon in method";
+		this.setState({moonPhase: parsed_json.response[0].name}); 
+		console.log(parsed_json);
 
 
 	}
