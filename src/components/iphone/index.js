@@ -7,7 +7,6 @@ import style_iphone from '../button/style_iphone';
 import $ from 'jquery';
 // import the Button component
 import Button from '../button';
-import Menunav from '../menuNav';
 
 //console.log("Temperature is " +  + "°" + current_timestep.temperature.units + " in " + site.name)
 
@@ -27,7 +26,7 @@ export default class Iphone extends Component {
 
 	// a call to fetch weather data via wunderground
 	fetchWeatherData = () => {
-
+		
 		$.ajax({
 			url: "http://ip-api.com/json",
 			dataType: "json",
@@ -48,7 +47,7 @@ export default class Iphone extends Component {
 	render() {
 		// check if temperature data is fetched, if so add the sign styling to the page
 		const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}` : style.temperature;
-
+		
 		// display all weather data
 		return (
 			<div class={ style.container }>
@@ -56,16 +55,16 @@ export default class Iphone extends Component {
 					<div class={ style.city }>{ this.state.locate }</div>
 					<div class={ style.conditions }>{ this.state.cond }</div>
 					<span class={ style.conditions }>Actual Temperature: { this.state.temp }</span>
-
+					
 					<span class={ style.conditions }>Wind Direction: { this.state.windDirection }</span>
 					<span class={ style.conditions }>Humidity: { this.state.humidity }%</span>
-
+					
 					<span class={ style.conditions }>Visibility: { this.state.visibility }miles</span>
 					<span class={ style.conditions }>Wind Speed: { this.state.windSpeed }mph</span>
-
+				
 				</div>
 				<div class={ style.details }></div>
-
+				
 			</div>
 		);
 	}
@@ -80,7 +79,7 @@ export default class Iphone extends Component {
 
 		var city = parsed_json.city;
 
-
+		
 
 		this.setState({
 			locate: city,
@@ -97,7 +96,7 @@ export default class Iphone extends Component {
 		// var conditions = parsed_json['current_observation']['weather'];
 		console.log(parsed_json);
 		var path = parsed_json.response.ob;
-
+		
 		//var period = location.Period[0];
 		var temp_c = path.tempC;
 		var weatherType = path.weather;
@@ -110,7 +109,7 @@ export default class Iphone extends Component {
 		//var precProp = period.Rep[0].Pp;
 		// set states for fields so they could be rendered later on
 		this.setState({
-
+			
 			temp: temp_c,
 			cond : weatherType,
 			//feels: feelsLike,
@@ -120,7 +119,7 @@ export default class Iphone extends Component {
 			visibility: visibility,
 			windSpeed: windSpeed,
 			//precProp: precProp
-		});
+		});      
 	}
 
 }

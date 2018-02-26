@@ -1,9 +1,9 @@
 // import preact
 import { h, render, Component } from 'preact';
 import style_iphone from '../button/style_iphone';
-import style from './style.less';
+import style from './style.css';
 
-export default class menuNav extends Component {
+export default class sidenav extends Component {
 
 	render() {
 		return (
