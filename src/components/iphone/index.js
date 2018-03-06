@@ -44,7 +44,7 @@ export default class Iphone extends Component {
 		return (
 			<div class={ style.container }>
 				<div class={ style.header }>
-					<div class={ style.city }>{ this.state.locate }</div>
+					<div class={ style.relative }>{ this.state.locate }</div>
 					<div class={ style.date }>Date: { this.state.date }</div>
 					<span class={ style.conditions }>Actual Temperature: { this.state.temp } °C </span>
 					<span class={ style.conditions }>Current Cloud Cover: { this.state.currentCloud }%</span>
