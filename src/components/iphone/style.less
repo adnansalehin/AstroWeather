@@ -1,46 +1,420 @@
 @import '~style/helpers';
 
-.container { 
-	display: flex;
-	flex-direction: column;
-	background-image: url('../../assets/backgrounds/clear-iphone.jpg');
-	color: #fff;
-	width: 414px;
-	height: 736px;
-	text-align: center;
-	padding-top: 80px;
-	margin: 0 auto;
+.container {
+  background-color: pink;
+  width: 414px;
+  height: 736px;
+  margin: 0px auto;
 }
 .header {
-	display: flex;
-	flex-direction: column;
-	flex: 1;
+  position: relative;
+  height: 300px;
+  background-image: url("rsz_clouds.jpg");
 }
+.relative {
+  position: relative;
+  top: 10px;
+  color: white;
+  text-align: center;
+}
+.section {
+  position: relative;
+  height: 436px;
+  background-image: url("rsz_section.jpg");
+}
+.subtitles
+{
+  font-size: 15px;
+  font-family: calibri;
+  font-weight: bold;
+  float: left;
+  color: white;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+.relativeSection
+{
+  position: relative;
+  width: 414px;
+  height: 108px;
+}
+.absoluteSection
+{
+  position: absolute;
+  top: 25px;
+  right: 280px;
+  width: 50px;
+  height: 80px;
+  font-family: calibri;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
+.temperature
+{
+  position: absolute;
+  height: 109px;
+  width: 414px;
+  line-height: 15px;
+  border-bottom: 1px solid white;
+}
+.overflowHidden
+{
+  height: 328px;
+  width: 414px;
+  top: 108px;
+  position: absolute;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+.overflowAuto
+{
+  height: 328px;
+  width: 430px;
+  position: absolute;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.cloudCover
+{
+  height: 109px;
+  line-height: 15px;
+  border-bottom: 1px solid white;
+}
+.low
+{
+  position: absolute;
+  top: 10px;
+}
+.mid
+{
+  position: absolute;
+  left: 100px;
+  top: 10px;
+}
+.high
+{
+  position: absolute;
+  left: 190px;
+  top: 10px;
+}
+.chanceOfRain
+{
+  height: 109px;
+  line-height: 15px;
+  border-bottom: 1px solid white;
+}
+.aSRain
+{
+  position: absolute;
+  top: 50px;
+  right: 150px;
+  width: 100px;
+  height: 100px;
+  font-family: calibri;
+  font-weight: bold;
+  font-size: 60px;
+  text-align: center;
+}
+.moonPhase
+{
+  height: 109px;
+  line-height: 15px;
+  border-bottom: 1px solid white;
+}
+.aSMoon
+{
+  position: absolute;
+  top: 35px;
+  right: 345px;
+  width: 50px;
+  height: 80px;
+}
+.phase
+{
+  position: absolute;
+  top: 15px;
+  right: 50px;
+  width: 250px;
+  height: 35px;
+  font-family: calibri;
+  font-size: 25px;
+  text-align: center;
+}
+.moonPercent
+{
+  position: absolute;
+  bottom: 20px;
+  right: 120px;
+  width: 100px;
+  height: 40px;
+  font-family: calibri;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+.moonDistance
+{
+  position: absolute;
+  top: 80px;
+  right: 25px;
+  width: 300px;
+  height: 40px;
+  font-family: calibri;
+  font-size: 20px;
+  text-align: center;
+}
+.wind
+{
+  height: 109px;
+  line-height: 15px;
+  border-bottom: 1px solid white;
+}
+.aSWind
+{
+  position: absolute;
+  top: 40px;
+  right: 345px;
+  width: 50px;
+  height: 80px;
+}
+.windInfo
+{
+  position: absolute;
+  top: 35px;
+  right: 125px;
+  width: 150px;
+  height: 100px;
+  font-family: calibri;
+  font-size: 30px;
+  text-align: center;
+  /*border: 3px solid #73AD21;*/
+}
+.skyVisability
+{
+  height: 109px;
+  line-height: 15px;
+  border-bottom: 1px solid white;
+
+}
+.aSSky
+{
+  position: absolute;
+  top: 45px;
+  right: 125px;
+  width: 150px;
+  height: 50px;
+  font-family: calibri;
+  font-size: 30px;
+  text-align: center;
+}
+.sunRise
+{
+  height: 109px;
+  line-height: 15px;
+  border-bottom: 1px solid white;
+}
+.aSSun
+{
+  position: absolute;
+  top: 40px;
+  right: 305px;
+  width: 50px;
+  height: 80px;
+}
+.sunriseInfo
+{
+  position: absolute;
+  top: 60px;
+  right: 200px;
+  width: 100px;
+  height: 50px;
+  font-family: calibri;
+  font-size: 20px;
+  text-align: center;
+}
+.aSSunset
+{
+  position: absolute;
+  top: 40px;
+  right: 135px;
+  width: 50px;
+  height: 80px;
+
+}
+.sunsetInfo
+{
+  position: absolute;
+  top: 60px;
+  right: 30px;
+  width: 100px;
+  height: 50px;
+  font-family: calibri;
+  font-size: 20px;
+  text-align: center;
+}
+.humidity
+{
+  height: 109px;
+  line-height: 15px;
+  border-bottom: 1px solid white;
+
+}
+.aSHumidity
+{
+  position: absolute;
+  bottom: 10px;
+  right: 125px;
+  width: 150px;
+  height: 50px;
+  font-family: calibri;
+  font-size: 30px;
+  text-align: center;
+}
+.precipitation
+{
+  height: 109px;
+  line-height: 15px;
+  border-bottom: 1px solid white;
+
+}
+.aSPrecipitation
+{
+  position: absolute;
+  bottom: 10px;
+  right: 125px;
+  width: 150px;
+  height: 50px;
+  font-family: calibri;
+  font-size: 30px;
+  text-align: center;
+}
+.pollution
+{
+  height: 109px;
+  line-height: 15px;
+  border-bottom: 1px solid white;
+
+}
+.aSPollutionStatus
+{
+  position: absolute;
+  bottom: 10px;
+  left: 50px;
+  width: 150px;
+  height: 50px;
+  font-family: calibri;
+  font-size: 30px;
+  text-align: center;
+}
+.aSPollutionInfo
+{
+  position: absolute;
+  bottom: 10px;
+  right: 90px;
+  width: 110px;
+  height: 50px;
+  font-family: calibri;
+  font-size: 30px;
+  text-align: center;
+}
+.pressure
+{
+  height: 109px;
+  line-height: 15px;
+  border-bottom: 1px solid white;
+
+}
+.aSPressure
+{
+  position: absolute;
+  bottom: 10px;
+  right: 125px;
+  width: 150px;
+  height: 50px;
+  font-family: calibri;
+  font-size: 30px;
+  text-align: center;
+}
+.astroTwilight
+{
+  height: 109px;
+  line-height: 15px;
+  border-bottom: 1px solid white;
+
+}
+.aSATStart
+{
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 150px;
+  height: 50px;
+  font-family: calibri;
+  font-size: 25px;
+  color: white;
+  text-align: center;
+}
+.aSATStartInfo
+{
+  position: absolute;
+  bottom: 10px;
+  left: 90px;
+  width: 150px;
+  height: 50px;
+  font-family: calibri;
+  font-size: 25px;
+  text-align: center;
+}
+.aSATEnd
+{
+  position: absolute;
+  bottom: 10px;
+  right: 90px;
+  width: 150px;
+  height: 50px;
+  font-family: calibri;
+  font-size: 25px;
+  color: white;
+  text-align: center;
+}
+.aSATEndInfo
+{
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  width: 150px;
+  height: 50px;
+  font-family: calibri;
+  font-size: 25px;
+  text-align: center;
+}
+
 .details {
-	flex: 4;
+  flex: 4;
 }
 .city {
-	flex: 1;
-	font-size: 1.7em;
-	font-weight: 400;	
+  flex: 1;
+  font-size: 1.7em;
+  font-weight: 400;
 }
 .conditions {
-	flex: 1;
-	font-size: 1em;
+  flex: 1;
+  font-size: 1em;
 }
-.temperature {
-	flex: 2;
-	margin-top: 0;
-	font-size: 4.8em;
-	font-weight: 300;
-	letter-spacing: -12px;
-}
+// .temperature {
+// 	flex: 2;
+// 	margin-top: 0;
+// 	font-size: 4.8em;
+// 	font-weight: 300;
+// 	letter-spacing: -12px;
+// }
 .filled:after {
-	content: "°";
-	margin: 0 0 0 1rem;
-	font-size: 0.5em;
-	font-weight: 100;
-	display: inline-block;
-	padding-top: 10px;
-	vertical-align: top;
+  content: "°";
+  margin: 0 0 0 1rem;
+  font-size: 0.5em;
+  font-weight: 100;
+  display: inline-block;
+  padding-top: 10px;
+  vertical-align: top;
 }
