@@ -7,6 +7,7 @@ import style_iphone from '../button/style_iphone';
 import $ from 'jquery';
 // import the Button component
 import Button from '../button';
+import {Router, Route, Link } from 'preact-router';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 export default class Iphone extends Component {
 //var Iphone = React.createClass({
@@ -40,32 +41,20 @@ export default class Iphone extends Component {
 		});
 	}
 	
-	handleClickSubmit = () => {
-		var tmp = this.state.address;
-		var arrofAddress = tmp.split(", ");
-		var lengthofArr = arrofAddress.length;
-		geocodeByAddress(arrofAddress[lengthofArr-1],arrofAddress[lengthofArr-2]).then(results => getLatLng(results[0]))
-		.then(({ lat, lng }) => console.log('Successfully got latitude and longitude', { lat, lng }));
-	  }
 
 	// the main render method for the iphone component
 	render() {
 		// check if temperature data is fetched, if so add the sign styling to the page
 		const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}`: style.temperature;
-		const inputProps = {
-			value: this.state.address,
-			onChange: this.onChange
-		  }
-		// display all weather data
+		<Router history = {browserHistory}>
+				<Route path="/locations" component={() => <Location country={this.state.country} city={this.state.city} changeLocation = {this.changeLocation}/> }/>
+		</Router>
 		// dates and times have been parsed from ISO format where required.
 		return (
 			<div id={ style.container }>
 				<div id = { style.header }>
 					<div id = { style.menu }>
-					<form>
-						<PlacesAutocomplete inputProps={inputProps} />
-					<button type="button" onClick={this.handleClickSubmit} class={style.button}></button>
-				 </form>
+					<Link href = {'/locations'} class={style.buttonLocation}>  </Link>
 					</div>
 					<div class={style.relative}>				
 						<p>{ this.state.date }</p>	
