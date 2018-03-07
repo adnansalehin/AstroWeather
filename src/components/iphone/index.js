@@ -7,7 +7,7 @@ import style_iphone from '../button/style_iphone';
 import $ from 'jquery';
 // import the Button component
 import Button from '../button';
-
+import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
 export default class Iphone extends Component {
 //var Iphone = React.createClass({
 
@@ -20,8 +20,15 @@ export default class Iphone extends Component {
 		this.setState({ display: false });
 
 		this.fetchWeatherData();
+		this.onChange = (address) => this.setState({ address });
 	}
+		changeLocation = (newLat, newLong) =>{
+		this.setState({
+			lat:newLat,
+			lon:newLong,
+		});
 
+	}
 	// a call to fetch weather data via wunderground
 	fetchWeatherData = () => {
 
@@ -31,28 +38,34 @@ export default class Iphone extends Component {
 			success: this.parseAll,
 			error: function(req, err){ console.log('API call failed' + err); }
 		});
-
 	}
+	
+	handleClickSubmit = () => {
+		var tmp = this.state.address;
+		var arrofAddress = tmp.split(", ");
+		var lengthofArr = arrofAddress.length;
+		geocodeByAddress(arrofAddress[lengthofArr-1],arrofAddress[lengthofArr-2]).then(results => getLatLng(results[0]))
+		.then(({ lat, lng }) => console.log('Successfully got latitude and longitude', { lat, lng }));
+	  }
 
 	// the main render method for the iphone component
 	render() {
 		// check if temperature data is fetched, if so add the sign styling to the page
 		const tempStyles = this.state.temp ? `${style.temperature} ${style.filled}`: style.temperature;
-
+		const inputProps = {
+			value: this.state.address,
+			onChange: this.onChange
+		  }
 		// display all weather data
 		// dates and times have been parsed from ISO format where required.
 		return (
 			<div id={ style.container }>
 				<div id = { style.header }>
 					<div id = { style.menu }>
-					<i class="fas fa-bars fa-3x"></i>	
-							<div class = {style.toptips}>
-								<div class={ style.button }>
-									<button type={ style.button } onclick="alert('Star gaze at South Downs national park! Check out the  dark sky reserve are the lakes Llyn y Dywarchen, Llyn Geirionydd and Llynnau Cregennen; Tŷ Cipar, a former gamekeeper’s house! The North Wales Astronomy Society organises monthly observing nights. ')">Click Me!</button>
-									<button type={ style.button }onclick="alert('Take a trip to the Isle of Wight! The Vectis Astronomical Society has weekly stargazing nights at an observatory in Newchurch, and gives monthly talks in Newport. There is an annual star party in Brighstone in March')">Top Tips!</button>
-									<button type={ style.button } onclick="alert('Grizedale forest, Cumbria! This dark sky discovery site has lots of events and activities, including a beginner’s stargazing trail (until 31 March), a Valentine’s night under the stars and an Earth Hour walk (25 March) with astronomer Robert Ince.')">Ready?</button>
-								</div>	
-							</div>
+					<form>
+						<PlacesAutocomplete inputProps={inputProps} />
+					<button type="button" onClick={this.handleClickSubmit} class={style.button}></button>
+				 </form>
 					</div>
 					<div class={style.relative}>				
 						<p>{ this.state.date }</p>	
@@ -60,9 +73,7 @@ export default class Iphone extends Component {
 						<div class={style.pH}>
 							<p>CLOUD COVER TOTAL</p>
 						</div>
-						<div class={style.cloudCover}>
-							{this.state.currentCloud}
-						</div>
+					
 						<div class={style.pLU}>
 							<p>Last updated: 12:23pm</p>
 						</div>
