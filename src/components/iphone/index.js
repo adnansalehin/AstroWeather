@@ -1,3 +1,12 @@
+/**
+ * Access ID
+ 97vTvh4PH85jyKV2zqioo
+
+ Secret Key
+ dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM
+
+ 750 accesses/day
+ */
 // import preact
 import { h, render, Component } from 'preact';
 import {Router, Route, Link, browserHistory} from 'preact-router';

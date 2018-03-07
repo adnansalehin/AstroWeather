@@ -1,7 +1,7 @@
-import { h, render, Component } from 'preact';
-import {Router, Route, Link } from 'preact-router';
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete'
-
+import {h, render, Component} from 'preact';
+import {Router, Route, Link} from 'preact-router';
+import PlacesAutocomplete, {geocodeByAddress, getLatLng} from 'react-places-autocomplete'
+import style_location from './style_location';
 import style from './style';
 import style_iphone from '../button/style_iphone';
 
@@ -19,28 +19,46 @@ export default class locationButton extends Component{
     }
 
     handleClickSubmit = () => {
+      geocodeByAddress(this.state.address)
+      .then(results => getLatLng(results[0]))
+      .then(({ lat, lng }) => this.change(lat,lng))
+      .catch(error => console.error('Error', error))
+    }
+
+    change = (tmpLat, tmpLng) => {
       var tmp = this.state.address;
       var arrofAddress = tmp.split(", ");
       var lengthofArr = arrofAddress.length;
-      this.props.changeLocation(arrofAddress[lengthofArr-1],arrofAddress[lengthofArr-2]);
-    }
-
+      var newLat = tmpLat;
+      var newLong = tmpLng;
+      console.log(newLat,newLong);
+      this.props.changeLocation(arrofAddress[lengthofArr-1],arrofAddress[lengthofArr-2],newLat,newLong);
+		}
+		
     render() {
       const inputProps = {
         value: this.state.address,
         onChange: this.onChange
       }
       return(
-    			<div id="container" class ={ style.container }>
-    					<div class={ style.search}>CHOOSE YOUR LOCATION</div>
+				<div id={ style.container }>
+				<div id = { style.header }>
+					<div id = { style.menu  }>
+						
+						<Link href = {'/'} class={style.buttonHome}> </Link>
+						<Link href = {'/locations'} class={style.buttonLocation}>  </Link>
+					
+					</div>   
+					</div>
+    					<div id={ style.search}>CHOOSE YOUR LOCATION</div>
               <div class={ style.header}>
                 <form>
                   <PlacesAutocomplete inputProps={inputProps} />
                   <button type="button" onClick={this.handleClickSubmit} class={style.button}></button>
                 </form>
     			    </div>
-              
-    			</div>
+            </div>
+    		
         );
     }
 }
