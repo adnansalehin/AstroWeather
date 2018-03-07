@@ -8,6 +8,9 @@ import $ from 'jquery';
 // import the Button component
 import Button from '../button';
 
+//import Location from '../location';
+//import {Router, Route, Link, browserHistory} from 'preact-router';
+
 export default class Iphone extends Component {
 //var Iphone = React.createClass({
 
@@ -45,39 +48,40 @@ export default class Iphone extends Component {
 			<div id={ style.container }>
 				<div id = { style.header }>
 					<div id = { style.menu }>
-					<i class="fas fa-bars fa-3x"></i>	
+					<i class="fas fa-bars fa-3x"></i>
 							<div class = {style.toptips}>
 								<div class={ style.button }>
 									<button type={ style.button } onclick="alert('Star gaze at South Downs national park! Check out the  dark sky reserve are the lakes Llyn y Dywarchen, Llyn Geirionydd and Llynnau Cregennen; Tŷ Cipar, a former gamekeeper’s house! The North Wales Astronomy Society organises monthly observing nights. ')">Click Me!</button>
 									<button type={ style.button }onclick="alert('Take a trip to the Isle of Wight! The Vectis Astronomical Society has weekly stargazing nights at an observatory in Newchurch, and gives monthly talks in Newport. There is an annual star party in Brighstone in March')">Top Tips!</button>
 									<button type={ style.button } onclick="alert('Grizedale forest, Cumbria! This dark sky discovery site has lots of events and activities, including a beginner’s stargazing trail (until 31 March), a Valentine’s night under the stars and an Earth Hour walk (25 March) with astronomer Robert Ince.')">Ready?</button>
-								</div>	
+								</div>
 							</div>
 					</div>
-					<div class={style.relative}>				
-						<p>{ this.state.date }</p>	
+					<div class={style.relative}>
+						<p>{ this.state.date }</p>
 						<h1>{ this.state.locate }</h1>
 						<div class={style.pH}>
-							<p>CLOUD COVER TOTAL</p>
-						</div>
-						<div class={style.cloudCover}>
-							{this.state.currentCloud}
-						</div>
-						<div class={style.pLU}>
-							<p>Last updated: 12:23pm</p>
+							<p>Current Cloud Cover: {this.state.currentCloud}%</p>
 						</div>
 					</div>
 				</div>
 				<div id = {style.section}>
+					<div class={style.pLU}>
+						<p>Last updated: {this.state.time} </p>
+					</div>
 					<div id = {style.temperature}>
 						<div id={style.weather} class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
 								<div class="item-active">
-									<img src="rsz_mixed.jpg" alt=""/>
+									<br/>
+									<img src={this.state.icon0} alt={this.state.icon0}/>
+									<p>Temperature: {this.state.temp0}</p>
 								</div>
 								<div class="item">
-	     							<img src="rsz_blueberries.jpg" alt=""/>
-	    						</div>
+									<br/>
+									<img src={this.state.icon1} alt={this.state.icon1}/>
+									<p>Temperature: {this.state.temp1}</p>
+								</div>
 								<div class="item">
 	     							<img src="rsz_apples.jpg" alt=""/>
 	    						</div>
@@ -102,34 +106,34 @@ export default class Iphone extends Component {
 							<div class={style.relativeSection}>
 								<div class={style.absoluteSection}>
 									<div class={style.low}>
-										<p>LOW</p>
-										<p>29%</p>
-									</div>	
+										<p>+3 hrs:</p>
+										<p>{this.state.cloudCover0}%</p>
+									</div>
 								</div>
 								<div class={style.absoluteSection}>
 									<div class={style.mid}>
-										<p>MID</p>
-										<p>83%</p>
-									</div>	
+										<p>+6 hrs:</p>
+										<p>{this.state.cloudCover1}%</p>
+									</div>
 								</div>
 								<div class={style.absoluteSection}>
 									<div class={style.high}>
-										<p>HIGH</p>
-										<p>12%</p>
-									</div>	
+										<p>+9 hrs:</p>
+										<p>{this.state.cloudCover2}%</p>
+									</div>
 								</div>
 							</div>
 						</div>
 						<div id = {style.chanceOfRain}>
 							<div class={style.pS}>
 								<p>CHANCE OF RAIN</p>
-							</div>	
+							</div>
 							<div class={style.relativeSection}>
 								<div class={style.aSRain}>
 									<p>30%</p>
 								</div>
 							</div>
-						</div>	
+						</div>
 						<div id = {style.moonPhase}>
 							<div class={style.pS}>
 								<p>MOON PHASE</p>
@@ -139,7 +143,7 @@ export default class Iphone extends Component {
 									<img src="Moon\Waning Crescent.png" alt="Waning Crescent"/>
 								</div>
 								<div class={style.phase}>
-									<p>Waning Crescent</p>
+									<p>{this.state.moonPhase}</p>
 								</div>
 								<div class={style.moonPercent}>
 									<p>13%</p>
@@ -148,7 +152,7 @@ export default class Iphone extends Component {
 									<p>Moon Distance: 405,905km</p>
 								</div>
 							</div>
-						</div>	
+						</div>
 						<div id = {style.wind}>
 							<div class= {style.pS}>
 								<p>WIND</p>
@@ -162,7 +166,7 @@ export default class Iphone extends Component {
 									<p>North-west</p>
 								</div>
 							</div>
-						</div>	
+						</div>
 						<div id = {style.skyVisability}>
 							<div class={style.pS}>
 								<p>SKY VISABILITY</p>
@@ -172,7 +176,7 @@ export default class Iphone extends Component {
 									<p>16Km</p>
 								</div>
 							</div>
-						</div>	
+						</div>
 						<div id = {style.sunRise}>
 							<div class={style.pS}>
 								<p>SUNRISE AND SUNSET</p>
@@ -182,16 +186,16 @@ export default class Iphone extends Component {
 									<img src="rsz_sunrise.png" alt="Sunrise"/>
 								</div>
 								<div class={style.sunriseInfo}>
-									<p>7:20am</p>
+									<p>{this.state.sunrise}</p>
 								</div>
 								<div class={style.aSSunset}>
 									<img src="rsz_sunset.png" alt="Sunset"/>
 								</div>
 								<div class={style.sunsetInfo}>
-									<p>5:09pm</p>
+									<p>{this.state.sunset}</p>
 								</div>
 							</div>
-						</div>	
+						</div>
 						<div id = {style.humidity}>
 							<div class={style.pS}>
 								<p>HUMIDITY</p>
@@ -201,7 +205,7 @@ export default class Iphone extends Component {
 									<p>56%</p>
 								</div>
 							</div>
-						</div>	
+						</div>
 						<div id = {style.precipitation}>
 							<div class={style.pS}>
 								<p>PRECIPITATION</p>
@@ -211,7 +215,7 @@ export default class Iphone extends Component {
 									<p>0.0057 in</p>
 								</div>
 							</div>
-						</div>	
+						</div>
 						<div id = {style.pollution}>
 							<div class={style.pS}>
 								<p>POLLUTION LEVEL</p>
@@ -220,12 +224,12 @@ export default class Iphone extends Component {
 								<div class={style.pollutionStatus}>
 									<p>VERY LOW</p>
 								</div>
-							
+
 								<div class={style.pollutionInfo}>
 									<p>14 (AQI)</p>
 								</div>
 							</div>
-						</div>	
+						</div>
 						<div id = {style.pressure}>
 							<div class={style.pS}>
 								<p>PRESSURE</p>
@@ -235,38 +239,37 @@ export default class Iphone extends Component {
 									<p>1005 hPa</p>
 								</div>
 							</div>
-						</div>	
+						</div>
 						<div id = {style.astroTwilight}>
 							<div class={style.pS}>
-								<p>ASTRONOMICAL TWILIGHT</p>
+								<p>Moon Rise and Moon Set</p>
 							</div>
 							<div class={style.relativeSection}>
 								<div class={style.start}>
-									<p>START</p>
+									<p>Moonrise</p>
 								</div>
 								<div class={style.aTStartInfo}>
-									<p>5:27am</p>
+									<p>{this.state.moonrise}</p>
 								</div>
 								<div class={style.end}>
-									<p>END</p>
+									<p>Moonset</p>
 								</div>
 								<div class={style.aTEndInfo}>
-									<p>7:02pm</p>
+									<p>{this.state.moonset}</p>
 								</div>
 							</div>
-						</div>		
+						</div>
 					</div>
 				</div>
 			</div>
-			
 		);
-
 	}
 
 	// global variables
 	lat;
 	lon;
-	// range from 0 to 2.
+	iconRoot = "/assets/weatherSD/";
+	// range from 0 to 2
 	cloudInterval=0;
 	parseAll = (parsed_json) =>
 	{
@@ -302,6 +305,7 @@ export default class Iphone extends Component {
 		console.log(parsed_json);
 
 		var date = parsed_json.response[0].obDateTime;
+		var time = parsed_json.response[0].obDateTime;
 		var path = parsed_json.response[0].ob;
 
 
@@ -315,11 +319,13 @@ export default class Iphone extends Component {
 		var sunset = path.sunsetISO;
 		var currentCloud = path.sky;
 		var precipitation = path.precipMM;
+		var icon = path.icon;
 
 
 		// set states for fields so they could be rendered later on
 		this.setState({
 			date: ((((date.split("T")[0]).split("-"))[2])+"."+(((date.split("T")[0]).split("-"))[1])+"."+(((date.split("T")[0]).split("-"))[0])),
+			time: (((((time.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((time.split("T")[1]).split("+"))[0]).split(":"))[1]),
 			temp: temp_c,
 			cond: weatherType,
 			//feels: feelsLike,
@@ -332,6 +338,7 @@ export default class Iphone extends Component {
 			//moonPhase: moonPhase
 			currentCloud: currentCloud,
 			// precipitation: precipitation,
+			icon: "/assets/weatherSD/"+icon,
 			sunrise: (((((sunrise.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((sunrise.split("T")[1]).split("+"))[0]).split(":"))[1]),
 			sunset: (((((sunset.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((sunset.split("T")[1]).split("+"))[0]).split(":"))[1])
 		});
@@ -364,6 +371,13 @@ export default class Iphone extends Component {
 			success: this.parseResponsePrecip,
 			error: function(req, err){ console.log('API call failed' + err); }
 		});
+		var urlTemp = "http://api.aerisapi.com/forecasts/"+this.lat+","+this.lon+"?filter=1hr&limit=12&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO";
+		$.ajax({
+			url: urlTemp,
+			dataType: "jsonp",
+			success: this.parseResponseTemp,
+			error: function(req, err){ console.log('API call failed' + err); }
+		});
 	}
 
 	parseResponseMoon = (parsed_json) =>
@@ -373,28 +387,35 @@ export default class Iphone extends Component {
 		 * (at bottom of page.)
 		 * @Returns the next 4 cycles. 0 is used here to get cycle 1.
 		*/
-		var path = parsed_json.response[0].moon;
-		var moonPhase = path.phase.name;
-		var moonrise = path.riseISO;
-		var moonset = path.setISO;
+		//var path = parsed_json.response[0].moon;
+		var moonPhase = parsed_json.response[0].moon.phase.name;
+		var moonrise = parsed_json.response[0].moon.riseISO;
+		var moonset = parsed_json.response[0].moon.setISO;
 
 		this.setState({
-			moonPhase:moonPhase,
+			moonPhase: moonPhase,
 			moonrise: (((((moonrise.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((moonrise.split("T")[1]).split("+"))[0]).split(":"))[1]),
 			moonset: (((((moonset.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((moonset.split("T")[1]).split("+"))[0]).split(":"))[1])
 		});
 		console.log(parsed_json);
 
-
 	}
 	parseResponseCloud = (parsed_json) =>
 	{
+		// var cloudCover0 = 0;
+		// var cloudCover1 = 0;
+		// var cloudCover2 = 0;
 		/*
 		 * @Rsponse body details: https://www.aerisweather.com/support/docs/api/reference/endpoints/forecasts/
 		 *
-		 * @Returns the next 3 cycles. 0 is used here to get cycle 1. Cycle through using periods[cycle].
+		 * @Returns the next 3 cycles. Cycle through using periods[cycle]. 0 is used here to get cycle 1.
 		*/
-		this.setState({cloudCover: parsed_json.response[0].periods[this.cloudInterval].sky}, {precipitation: parsed_json.response[0].periods[0].precipMM});
+		this.setState({
+			cloudCover0: parsed_json.response[0].periods[0].sky,
+			cloudCover1: parsed_json.response[0].periods[1].sky,
+			cloudCover2: parsed_json.response[0].periods[2].sky
+		});
+
 		console.log(parsed_json);
 	}
 	parseResponsePrecip = (parsed_json) =>
@@ -406,6 +427,30 @@ export default class Iphone extends Component {
 		*/
 		this.setState({precipitation: parsed_json.response[0].periods[0].precipMM});
 		console.log(parsed_json);
+	}
+	parseResponseTemp = (parsed_json) =>
+	{
+		/*
+		 * @Rsponse body details: https://www.aerisweather.com/support/docs/api/reference/endpoints/forecasts/
+		 *
+		 * @Returns the expected temeratures in the next 12 hours, starting at the next hour.
+		*/
+		var path = parsed_json.response[0];
+
+		this.setState({
+			temp0: path.periods[0].tempC, icon0: this.iconRoot + path.periods[0].icon,
+			temp1: path.periods[1].tempC, icon1: this.iconRoot + path.periods[1].icon,
+			temp2: path.periods[2].tempC, icon2: this.iconRoot + path.periods[2].icon,
+			temp3: path.periods[3].tempC, icon3: this.iconRoot + path.periods[3].icon,
+			temp4: path.periods[4].tempC, icon4: this.iconRoot + path.periods[4].icon,
+			temp5: path.periods[5].tempC, icon5: this.iconRoot + path.periods[5].icon,
+			temp6: path.periods[6].tempC, icon6: this.iconRoot + path.periods[6].icon,
+			temp7: path.periods[7].tempC, icon7: this.iconRoot + path.periods[7].icon,
+			temp8: path.periods[8].tempC, icon8: this.iconRoot + path.periods[8].icon,
+			temp9: path.periods[9].tempC, icon9: this.iconRoot + path.periods[9].icon,
+			temp10: path.periods[10].tempC, icon10: this.iconRoot + path.periods[10].icon,
+			temp11: path.periods[11].tempC, icon11: this.iconRoot + path.periods[11].icon
+		});
 	}
 
 	windDirectionTypes = {
