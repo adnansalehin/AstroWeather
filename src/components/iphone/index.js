@@ -149,6 +149,112 @@ export default class Iphone extends Component {
 								</div>
 							</div>
 						</div>	
+						<div id = {style.wind}>
+							<div class= {style.pS}>
+								<p>WIND</p>
+							</div>
+							<div class= {style.relativeSection}>
+								<div class= {style.aSWind}>
+									<img src="rsz_wind.png" alt="Wind"/>
+								</div>
+								<div class= {style.windInfo}>
+									<p>14 mph</p>
+									<p>North-west</p>
+								</div>
+							</div>
+						</div>	
+						<div id = {style.skyVisability}>
+							<div class={style.pS}>
+								<p>SKY VISABILITY</p>
+							</div>
+							<div class={style.relativeSection}>
+								<div class={style.skyInfo}>
+									<p>16Km</p>
+								</div>
+							</div>
+						</div>	
+						<div id = {style.sunRise}>
+							<div class={style.pS}>
+								<p>SUNRISE AND SUNSET</p>
+							</div>
+							<div class= {style.relativeSection}>
+								<div class= {style.aSSun}>
+									<img src="rsz_sunrise.png" alt="Sunrise"/>
+								</div>
+								<div class={style.sunriseInfo}>
+									<p>7:20am</p>
+								</div>
+								<div class={style.aSSunset}>
+									<img src="rsz_sunset.png" alt="Sunset"/>
+								</div>
+								<div class={style.sunsetInfo}>
+									<p>5:09pm</p>
+								</div>
+							</div>
+						</div>	
+						<div id = {style.humidity}>
+							<div class={style.pS}>
+								<p>HUMIDITY</p>
+							</div>
+							<div class={style.relativeSection}>
+								<div class={style.humidityInfo}>
+									<p>56%</p>
+								</div>
+							</div>
+						</div>	
+						<div id = {style.precipitation}>
+							<div class={style.pS}>
+								<p>PRECIPITATION</p>
+							</div>
+							<div class={style.relativeSection}>
+								<div class={style.precipitationInfo}>
+									<p>0.0057 in</p>
+								</div>
+							</div>
+						</div>	
+						<div id = {style.pollution}>
+							<div class={style.pS}>
+								<p>POLLUTION LEVEL</p>
+							</div>
+							<div class={style.relativeSection}>
+								<div class={style.pollutionStatus}>
+									<p>VERY LOW</p>
+								</div>
+							
+								<div class={style.pollutionInfo}>
+									<p>14 (AQI)</p>
+								</div>
+							</div>
+						</div>	
+						<div id = {style.pressure}>
+							<div class={style.pS}>
+								<p>PRESSURE</p>
+							</div>
+							<div class={style.relativeSection}>
+								<div class={style.pressureInfo}>
+									<p>1005 hPa</p>
+								</div>
+							</div>
+						</div>	
+						<div id = {style.astroTwilight}>
+							<div class={style.pS}>
+								<p>ASTRONOMICAL TWILIGHT</p>
+							</div>
+							<div class={style.relativeSection}>
+								<div class={style.start}>
+									<p>START</p>
+								</div>
+								<div class={style.aTStartInfo}>
+									<p>5:27am</p>
+								</div>
+								<div class={style.end}>
+									<p>END</p>
+								</div>
+								<div class={style.aTEndInfo}>
+									<p>7:02pm</p>
+								</div>
+							</div>
+						</div>		
 					</div>
 				</div>
 			</div>
