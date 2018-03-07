@@ -42,26 +42,223 @@ export default class Iphone extends Component {
 		// display all weather data
 		// dates and times have been parsed from ISO format where required.
 		return (
-			<div class={ style.container }>
-				<div class={ style.header }>
-					<div class={ style.city }>{ this.state.locate }</div>
-					<div class={ style.date }>Date: { this.state.date }</div>
-					<span class={ style.conditions }>Actual Temperature: { this.state.temp } °C </span>
-					<span class={ style.conditions }>Current Cloud Cover: { this.state.currentCloud }%</span>
-					<span class={ style.conditions }>Cloud Cover (3 hr interval): { this.state.cloudCover }%</span>
-					<span class={ style.conditions }>Wind Direction: { this.state.windDirection }</span>
-					<span class={ style.conditions }>Humidity: { this.state.humidity }%</span>
-					<span class={ style.conditions }>Precipitation: { this.state.precipitation }mm</span>
-					<span class={ style.conditions }>Wind Speed: { this.state.windSpeed }mph</span>
-					<span class={ style.conditions }>Moon Phase: { this.state.moonPhase }</span>
-					<span class={ style.conditions }>Sunrise: { this.state.sunrise } Sunset: { this.state.sunset } </span>
-					<span class={ style.conditions }>Moonrise: { this.state.moonrise } Moonset: { this.state.moonset } </span>
-					<span class={ style.conditions }>Latitude: { this.lat } Longitude: { this.lon }</span>
-
+			<div id={ style.container }>
+				<div id = { style.header }>
+					<div id = { style.menu }>
+					<i class="fas fa-bars fa-3x"></i>	
+							<div class = {style.toptips}>
+								<div class={ style.button }>
+									<button type={ style.button } onclick="alert('Star gaze at South Downs national park! Check out the  dark sky reserve are the lakes Llyn y Dywarchen, Llyn Geirionydd and Llynnau Cregennen; Tŷ Cipar, a former gamekeeper’s house! The North Wales Astronomy Society organises monthly observing nights. ')">Click Me!</button>
+									<button type={ style.button }onclick="alert('Take a trip to the Isle of Wight! The Vectis Astronomical Society has weekly stargazing nights at an observatory in Newchurch, and gives monthly talks in Newport. There is an annual star party in Brighstone in March')">Top Tips!</button>
+									<button type={ style.button } onclick="alert('Grizedale forest, Cumbria! This dark sky discovery site has lots of events and activities, including a beginner’s stargazing trail (until 31 March), a Valentine’s night under the stars and an Earth Hour walk (25 March) with astronomer Robert Ince.')">Ready?</button>
+								</div>	
+							</div>
+					</div>
+					<div class={style.relative}>				
+						<p>{ this.state.date }</p>	
+						<h1>{ this.state.locate }</h1>
+						<div class={style.pH}>
+							<p>CLOUD COVER TOTAL</p>
+						</div>
+						<div class={style.cloudCover}>
+							{this.state.currentCloud}
+						</div>
+						<div class={style.pLU}>
+							<p>Last updated: 12:23pm</p>
+						</div>
+					</div>
 				</div>
-				<div class={ style.details }></div>
-
+				<div id = {style.section}>
+					<div id = {style.temperature}>
+						<div id={style.weather} class="carousel slide" data-ride="carousel">
+							<div class="carousel-inner">
+								<div class="item-active">
+									<img src="rsz_mixed.jpg" alt=""/>
+								</div>
+								<div class="item">
+	     							<img src="rsz_blueberries.jpg" alt=""/>
+	    						</div>
+								<div class="item">
+	     							<img src="rsz_apples.jpg" alt=""/>
+	    						</div>
+							</div>
+							<a class="left carousel-control" href="#weather" data-slide="prev">
+								<span class="glyphicon glyphicon-chevron-left"></span>
+								<span class="sr-only">Previous</span>
+						  	</a>
+							  <a class="right carousel-control" href="#weather" data-slide="next">
+								<span class="glyphicon glyphicon-chevron-right"></span>
+								<span class="sr-only">Next</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div id = {style.overflowHidden}>
+					<div id = {style.overflowAuto}>
+						<div id = {style.cloudCover}>
+							<div class={style.pS}>
+								<p>CLOUD COVER</p>
+							</div>
+							<div class={style.relativeSection}>
+								<div class={style.absoluteSection}>
+									<div class={style.low}>
+										<p>LOW</p>
+										<p>29%</p>
+									</div>	
+								</div>
+								<div class={style.absoluteSection}>
+									<div class={style.mid}>
+										<p>MID</p>
+										<p>83%</p>
+									</div>	
+								</div>
+								<div class={style.absoluteSection}>
+									<div class={style.high}>
+										<p>HIGH</p>
+										<p>12%</p>
+									</div>	
+								</div>
+							</div>
+						</div>
+						<div id = {style.chanceOfRain}>
+							<div class={style.pS}>
+								<p>CHANCE OF RAIN</p>
+							</div>	
+							<div class={style.relativeSection}>
+								<div class={style.aSRain}>
+									<p>30%</p>
+								</div>
+							</div>
+						</div>	
+						<div id = {style.moonPhase}>
+							<div class={style.pS}>
+								<p>MOON PHASE</p>
+							</div>
+							<div class={style.relativeSection}>
+								<div class={style.aSMoon}>
+									<img src="Moon\Waning Crescent.png" alt="Waning Crescent"/>
+								</div>
+								<div class={style.phase}>
+									<p>Waning Crescent</p>
+								</div>
+								<div class={style.moonPercent}>
+									<p>13%</p>
+								</div>
+								<div class={style.moonDistance}>
+									<p>Moon Distance: 405,905km</p>
+								</div>
+							</div>
+						</div>	
+						<div id = {style.wind}>
+							<div class= {style.pS}>
+								<p>WIND</p>
+							</div>
+							<div class= {style.relativeSection}>
+								<div class= {style.aSWind}>
+									<img src="rsz_wind.png" alt="Wind"/>
+								</div>
+								<div class= {style.windInfo}>
+									<p>14 mph</p>
+									<p>North-west</p>
+								</div>
+							</div>
+						</div>	
+						<div id = {style.skyVisability}>
+							<div class={style.pS}>
+								<p>SKY VISABILITY</p>
+							</div>
+							<div class={style.relativeSection}>
+								<div class={style.skyInfo}>
+									<p>16Km</p>
+								</div>
+							</div>
+						</div>	
+						<div id = {style.sunRise}>
+							<div class={style.pS}>
+								<p>SUNRISE AND SUNSET</p>
+							</div>
+							<div class= {style.relativeSection}>
+								<div class= {style.aSSun}>
+									<img src="rsz_sunrise.png" alt="Sunrise"/>
+								</div>
+								<div class={style.sunriseInfo}>
+									<p>7:20am</p>
+								</div>
+								<div class={style.aSSunset}>
+									<img src="rsz_sunset.png" alt="Sunset"/>
+								</div>
+								<div class={style.sunsetInfo}>
+									<p>5:09pm</p>
+								</div>
+							</div>
+						</div>	
+						<div id = {style.humidity}>
+							<div class={style.pS}>
+								<p>HUMIDITY</p>
+							</div>
+							<div class={style.relativeSection}>
+								<div class={style.humidityInfo}>
+									<p>56%</p>
+								</div>
+							</div>
+						</div>	
+						<div id = {style.precipitation}>
+							<div class={style.pS}>
+								<p>PRECIPITATION</p>
+							</div>
+							<div class={style.relativeSection}>
+								<div class={style.precipitationInfo}>
+									<p>0.0057 in</p>
+								</div>
+							</div>
+						</div>	
+						<div id = {style.pollution}>
+							<div class={style.pS}>
+								<p>POLLUTION LEVEL</p>
+							</div>
+							<div class={style.relativeSection}>
+								<div class={style.pollutionStatus}>
+									<p>VERY LOW</p>
+								</div>
+							
+								<div class={style.pollutionInfo}>
+									<p>14 (AQI)</p>
+								</div>
+							</div>
+						</div>	
+						<div id = {style.pressure}>
+							<div class={style.pS}>
+								<p>PRESSURE</p>
+							</div>
+							<div class={style.relativeSection}>
+								<div class={style.pressureInfo}>
+									<p>1005 hPa</p>
+								</div>
+							</div>
+						</div>	
+						<div id = {style.astroTwilight}>
+							<div class={style.pS}>
+								<p>ASTRONOMICAL TWILIGHT</p>
+							</div>
+							<div class={style.relativeSection}>
+								<div class={style.start}>
+									<p>START</p>
+								</div>
+								<div class={style.aTStartInfo}>
+									<p>5:27am</p>
+								</div>
+								<div class={style.end}>
+									<p>END</p>
+								</div>
+								<div class={style.aTEndInfo}>
+									<p>7:02pm</p>
+								</div>
+							</div>
+						</div>		
+					</div>
+				</div>
 			</div>
+			
 		);
 
 	}
