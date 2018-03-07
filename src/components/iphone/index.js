@@ -25,14 +25,15 @@ import Home from './homepage';
 export default class Iphone extends Component {
 	constructor(){
 		super();
-		this.state.lat = "51.5";
-		this.state.city = "0.12";
+		// this.state.lat = "51.5";
+		// this.state.city = "0.12";
 	}
 
 	changeLocation = (newLat, newLong) =>{
 		this.setState({
 			lat:newLat,
 			lon:newLong,
+		
 		});
 	}
 

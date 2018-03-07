@@ -18,31 +18,36 @@ export default class home extends Component {
 	// a constructor with initial set states
 	constructor(props){
 		super(props);
-        console.log(this.props.lat);
-        console.log(this.props.lon);
+        console.log("printed in home page lat" + this.props.lat);
+        console.log("printed in home page lon" + this.props.lon);
 		this.state.temp = "";
 		// button display state
 		this.setState({ display: false });
-
-		this.fetchWeatherData();
 		//this.onChange = (address) => this.setState({ address });
+		this.fetchWeatherData();
+	
 	}
-		// changeLocation = (newLat, newLong) =>{
-		// this.setState({
-		// 	lat:newLat,
-		// 	lon:newLong,
-		// });
-
-	// }
-	// a call to fetch weather data via wunderground
+	
+	
 	fetchWeatherData = () => {
-
-		$.ajax({
-			url: "http://ip-api.com/json",
-			dataType: "json",
-			success: this.parseAll,
-			error: function(req, err){ console.log('API call failed' + err); }
-		});
+		if(typeof this.props.lon === "undefined")
+		{
+			$.ajax({
+				url: "http://ip-api.com/json",
+				dataType: "json",
+				success: this.parseAll,
+				error: function(req, err){ console.log('API call failed' + err); }
+			});
+		}
+		else
+		{
+			$.ajax({
+				url: "http://api.aerisapi.com/observations/closest?p="+this.props.lat+","+this.props.lon+"&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM",
+				dataType: "jsonp",
+				success: this.parseResponse,
+				error: function(req, err){ console.log('API call failed' + err); }
+			});
+		}
 	}
 	
 
@@ -143,7 +148,7 @@ export default class home extends Component {
 							</div>
 							<div class={style.relativeSection}>
 								<div class={style.aSMoon}>
-									<img src="Moon\Waning Crescent.png" alt="Waning Crescent"/>
+									{/* <img src="Moon\Waning Crescent.png" alt="Waning Crescent"/> */}
 								</div>
 								<div class={style.phase}>
 									<p>{this.state.moonPhase}</p>
@@ -276,26 +281,30 @@ export default class home extends Component {
 	cloudInterval=0;
 	parseAll = (parsed_json) =>
 	{
-		//get location
-		console.log(parsed_json);
-		 this.lat = parsed_json.lat;
-		 this.lon = parsed_json.lon;
+		
+			
+			//get location
+			console.log(parsed_json);
+			this.lat = parsed_json.lat;
+			this.lon = parsed_json.lon;
 
 
-		var city = parsed_json.city;
+			var city = parsed_json.city;
 
-		this.setState({
-			locate: city,
-		});
+			this.setState({
+				locate: city,
+			});
 
-		//get everything else
-		$.ajax({
-			url: "http://api.aerisapi.com/observations/closest?p="+this.lat+","+this.lon+"&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM",
-			dataType: "jsonp",
-			success: this.parseResponse,
-			error: function(req, err){ console.log('API call failed' + err); }
-		});
+			//get everything else
+			$.ajax({
+				url: "http://api.aerisapi.com/observations/closest?p="+this.lat+","+this.lon+"&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM",
+				dataType: "jsonp",
+				success: this.parseResponse,
+				error: function(req, err){ console.log('API call failed' + err); }
+			});
+		
 
+		
 	}
 
 	parseResponse = (parsed_json) => {
