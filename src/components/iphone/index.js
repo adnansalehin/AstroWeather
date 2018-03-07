@@ -1,3 +1,12 @@
+/**
+ * Access ID
+ 97vTvh4PH85jyKV2zqioo
+
+ Secret Key
+ dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM
+
+ 750 accesses/day
+ */
 // import preact
 import { h, render, Component } from 'preact';
 // import stylesheets for ipad & button
@@ -297,7 +306,7 @@ export default class Iphone extends Component {
 
 		//get everything else
 		$.ajax({
-			url: "http://api.aerisapi.com/observations/closest?p="+this.lat+","+this.lon+"&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO",
+			url: "http://api.aerisapi.com/observations/closest?p="+this.lat+","+this.lon+"&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM",
 			dataType: "jsonp",
 			success: this.parseResponse,
 			error: function(req, err){ console.log('API call failed' + err); }
@@ -354,9 +363,9 @@ export default class Iphone extends Component {
 		});
 
 		//old one
-		//var url = "http://api.aerisapi.com/sunmoon/?p="+this.lat+","+this.lon+"&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO";
+		//var url = "http://api.aerisapi.com/sunmoon/?p="+this.lat+","+this.lon+"&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
 
-		var urlMoon = "http://api.aerisapi.com/sunmoon/?p="+this.lat+","+this.lon+"&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO";
+		var urlMoon = "http://api.aerisapi.com/sunmoon/"+this.lat+","+this.lon+"?&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
 
 		$.ajax({
 			url: urlMoon,
@@ -365,23 +374,23 @@ export default class Iphone extends Component {
 			error: function(req, err){ console.log('API call failed' + err); }
 		});
 		//Test url:
-		//http://api.aerisapi.com/forecasts/51.5074,-0.127758?filter=3hr&limit=3&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO
+		//http://api.aerisapi.com/forecasts/51.5074,-0.127758?filter=3hr&limit=3&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM
 
-		var urlCloud = "http://api.aerisapi.com/forecasts/"+this.lat+","+this.lon+"?filter=3hr&limit=3&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO";
+		var urlCloud = "http://api.aerisapi.com/forecasts/"+this.lat+","+this.lon+"?filter=3hr&limit=3&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
 		$.ajax({
 			url: urlCloud,
 			dataType: "jsonp",
 			success: this.parseResponseCloud,
 			error: function(req, err){ console.log('API call failed' + err); }
 		});
-		var urlPrecip = "http://api.aerisapi.com/forecasts/"+this.lat+","+this.lon+"?&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO";
+		var urlPrecip = "http://api.aerisapi.com/forecasts/"+this.lat+","+this.lon+"?&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
 		$.ajax({
 			url: urlCloud,
 			dataType: "jsonp",
 			success: this.parseResponsePrecip,
 			error: function(req, err){ console.log('API call failed' + err); }
 		});
-		var urlTemp = "http://api.aerisapi.com/forecasts/"+this.lat+","+this.lon+"?filter=1hr&limit=12&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO";
+		var urlTemp = "http://api.aerisapi.com/forecasts/"+this.lat+","+this.lon+"?filter=1hr&limit=12&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
 		$.ajax({
 			url: urlTemp,
 			dataType: "jsonp",
@@ -397,15 +406,18 @@ export default class Iphone extends Component {
 		 * (at bottom of page.)
 		 * @Returns the next 4 cycles. 0 is used here to get cycle 1.
 		*/
-		//var path = parsed_json.response[0].moon;
-		var moonPhase = parsed_json.response[0].moon.phase.name;
-		var moonrise = parsed_json.response[0].moon.riseISO;
-		var moonset = parsed_json.response[0].moon.setISO;
-
+		var path = parsed_json.response[0].moon;
+		var moonPhase = path.phase.name;
+		var moonrise = path.riseISO;
+		var moonset = path.setISO;
+		var time = parsed_json.response[0].dateTimeISO;
+		//!!Warning: moonrise unavailable today.
 		this.setState({
+			time: (((((time.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((time.split("T")[1]).split("+"))[0]).split(":"))[1]),
+
 			moonPhase: moonPhase,
-			moonrise: (((((moonrise.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((moonrise.split("T")[1]).split("+"))[0]).split(":"))[1]),
-			moonset: (((((moonset.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((moonset.split("T")[1]).split("+"))[0]).split(":"))[1])
+			//moonrise: (((((moonrise.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((moonrise.split("T")[1]).split("+"))[0]).split(":"))[1]),
+			//moonset: (((((moonset.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((moonset.split("T")[1]).split("+"))[0]).split(":"))[1])
 		});
 		console.log(parsed_json);
 
