@@ -80,24 +80,12 @@ export default class home extends Component {
 					</div>
 				</div>
 				<div id = {style.section}>
-					<div class = {style.relative}>	
-						<img src = {this.state.icon0}></img> 
-						<img src = {this.state.icon1}></img> 
-						<img src = {this.state.icon2}></img> 
-						<img src = {this.state.icon3}></img> 
-						<img src = {this.state.icon4}></img> 
-						<img src = {this.state.icon5}></img> 
-						<img src = {this.state.icon6}></img> 
-						
+					<div class = {style.scrollmenu}>	
+						<img src = {this.state.icon0}></img> <img src = {this.state.icon1}></img> <img src = {this.state.icon2}></img> <img src = {this.state.icon3}></img> <img src = {this.state.icon4}></img> <img src = {this.state.icon5}></img> <img src = {this.state.icon6}></img> <img src = {this.state.icon7}></img> <img src = {this.state.icon8}></img> <img src = {this.state.icon9}></img> <img src = {this.state.icon10}></img> <img src = {this.state.icon11}></img> 
+
 						<p class = {style.inScrollText}> 	
-							{this.state.temp0} 
-							{this.state.temp1}  
-							{this.state.temp2}  
-							{this.state.temp3}  
-							{this.state.temp4}  
-							{this.state.temp5}  
-							{this.state.temp6}  
-					
+							{/* must be this way otherwise it doesnt space */}
+							{this.state.temp0}° {this.state.temp1}° {this.state.temp2}° {this.state.temp3}° {this.state.temp4}° {this.state.temp5}° {this.state.temp6}° {this.state.temp7}° {this.state.temp8}°	{this.state.temp9}° {this.state.temp10}° {this.state.temp11}°
 						</p>
 					</div>
 							
