@@ -83,7 +83,7 @@ export default class home extends Component {
 
 					</div>
 					<div class={style.relative}>
-						<p>date: { this.state.date } time: { this.state.time}  hour:{ this.state.hour } min:{ this.state.minute }</p>
+						<p>{ this.state.date } </p>
 						<h1>{ this.state.locate }</h1>
 						<p></p>
 						<div class={style.pH}>
@@ -94,34 +94,33 @@ export default class home extends Component {
 					<div id = {style.section}>
 						<div class={style.scrollmenu}>
 							<table class = {style.table}>
-
 								<tr>
-								<td><img src = {this.state.icon0}></img> </td>
-								<td><img src = {this.state.icon1}></img> </td>
-								<td><img src = {this.state.icon2}></img> </td>
-								<td><img src = {this.state.icon3}></img> </td>
-								<td><img src = {this.state.icon4}></img> </td>
-								<td><img src = {this.state.icon5}></img> </td>
-								<td><img src = {this.state.icon6}></img> </td>
-								<td><img src = {this.state.icon7}></img> </td>
-								<td><img src = {this.state.icon8}></img> </td>
-								<td><img src = {this.state.icon9}></img> </td>
-								<td><img src = {this.state.icon10}></img> </td>
-								<td><img src = {this.state.icon11}></img> </td>
+									<td><img src = {this.state.icon0}></img> </td>
+									<td><img src = {this.state.icon1}></img> </td>
+									<td><img src = {this.state.icon2}></img> </td>
+									<td><img src = {this.state.icon3}></img> </td>
+									<td><img src = {this.state.icon4}></img> </td>
+									<td><img src = {this.state.icon5}></img> </td>
+									<td><img src = {this.state.icon6}></img> </td>
+									<td><img src = {this.state.icon7}></img> </td>
+									<td><img src = {this.state.icon8}></img> </td>
+									<td><img src = {this.state.icon9}></img> </td>
+									<td><img src = {this.state.icon10}></img> </td>
+									<td><img src = {this.state.icon11}></img> </td>
 								</tr>
 								<tr>
-								<td>{this.state.temp0}°</td>
-								<td>{this.state.temp1}°</td>
-								<td>{this.state.temp2}°</td>
-								<td>{this.state.temp3}°</td>
-								<td>{this.state.temp4}°</td>
-								<td>{this.state.temp5}°</td>
-								<td>{this.state.temp6}°</td>
-								<td>{this.state.temp7}°</td>
-								<td>{this.state.temp8}°</td>
-								<td>{this.state.temp9}°</td>
-								<td>{this.state.temp10}°</td>
-								<td>{this.state.temp11}°</td>
+									<td>{this.state.temp0}°</td>
+									<td>{this.state.temp1}°</td>
+									<td>{this.state.temp2}°</td>
+									<td>{this.state.temp3}°</td>
+									<td>{this.state.temp4}°</td>
+									<td>{this.state.temp5}°</td>
+									<td>{this.state.temp6}°</td>
+									<td>{this.state.temp7}°</td>
+									<td>{this.state.temp8}°</td>
+									<td>{this.state.temp9}°</td>
+									<td>{this.state.temp10}°</td>
+									<td>{this.state.temp11}°</td>
 								</tr>
 							</table>
 						</div>	
@@ -478,7 +477,9 @@ export default class home extends Component {
 			temp8: path.periods[8].tempC, icon8: this.iconRoot + path.periods[8].icon,
 			temp9: path.periods[9].tempC, icon9: this.iconRoot + path.periods[9].icon,
 			temp10: path.periods[10].tempC, icon10: this.iconRoot + path.periods[10].icon,
-			temp11: path.periods[11].tempC, icon11: this.iconRoot + path.periods[11].icon
+			temp11: path.periods[11].tempC, icon11: this.iconRoot + path.periods[11].icon,
+			
+
 		});
 	}
 
@@ -501,8 +502,4 @@ export default class home extends Component {
 		"NNW":"North North West"
 	}
 
-	// function parseTimeFromISO(time)
-	// {
-	// 	return (((time.split("T")[1]).split("+"))[0]);
-	// }
 }
