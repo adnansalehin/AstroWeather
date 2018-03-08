@@ -35,6 +35,11 @@ export default class locationButton extends Component{
       console.log(arrofAddress, newCity,newLat,newLong);
       this.props.changeLocation(newLat,newLong, newCity);
 		}
+
+		clickForCurrent = () =>{
+			this.props.changeLocation(undefined,undefined, undefined);
+
+		}
 		
     render() {
       const inputProps = {
@@ -48,15 +53,17 @@ export default class locationButton extends Component{
 						
 						<Link href = {'/'} class={style.buttonHome}> </Link>
 						<Link href = {'/locations'} class={style.buttonLocation}>  </Link>
-					
+						<Link href = {'/'} onClick={this.clickForCurrent} class={style.buttonCurrentLocation}> </Link>
 					</div>   
 					</div>
     					<div id={ style.search}>CHOOSE YOUR LOCATION</div>
               <div class={ style.header}>
                 <form>
                   <PlacesAutocomplete inputProps={inputProps} />
-                  <button type="button" onClick={this.handleClickSubmit} class={style.buttonSubmit}></button>
+									<Link href = {'/'} onClick={this.handleClickSubmit} class={style.button}></Link>
+								
                 </form>
+								
     			    </div>
             </div>
     		
