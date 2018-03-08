@@ -21,19 +21,21 @@ export default class home extends Component {
         console.log("printed in home page lat" + this.props.lat);
 		console.log("printed in home page lon" + this.props.lon);
 		console.log("printed in home page city" + this.props.city);
-		this.state.temp = "";
 		// button display state
-		this.setState({ display: false });
+		this.setState(
+		{ 
+			locate: this.props.city,
+			lat: this.props.lat,
+			lon: this.props.lon,
+			display: false,
+		});
 		//this.onChange = (address) => this.setState({ address });
 		this.fetchWeatherData();
 	
 	}
-	// global variables
-	lat;
-	lon;
-	
+
 	fetchWeatherData = () => {
-		if(typeof this.props.lon === "undefined")
+		if(typeof this.state.lon === "undefined")
 		{
 			$.ajax({
 				url: "http://ip-api.com/json",
@@ -44,20 +46,13 @@ export default class home extends Component {
 		}
 		else
 		{
-			this.setState({
-				locate: this.props.city,
-				lat: this.props.lat,
-				lon: this.props.lon
-			});
-
 			$.ajax({
-				url: "http://api.aerisapi.com/observations/closest?p="+this.props.lat+","+this.props.lon+"&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM",
+				url: "http://api.aerisapi.com/observations/closest?p="+this.state.lat+","+this.state.lon+"&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM",
 				dataType: "jsonp",
 				success: this.parseResponse,
 				error: function(req, err){ console.log('API call failed' + err); }
 
 			});
-
 		}
 	}
 	
@@ -292,29 +287,22 @@ export default class home extends Component {
 	parseAll = (parsed_json) =>
 	{
 		
-			
 			//get location
 			console.log(parsed_json);
-			this.lat = parsed_json.lat;
-			this.lon = parsed_json.lon;
-
-
-			var city = parsed_json.city;
-
 			this.setState({
-				locate: city,
+				locate: parsed_json.city,
+				lat: parsed_json.lat,
+				lon: parsed_json.lon
 			});
 
 			//get everything else
 			$.ajax({
-				url: "http://api.aerisapi.com/observations/closest?p="+this.lat+","+this.lon+"&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM",
+				url: "http://api.aerisapi.com/observations/closest?p="+this.state.lat+","+this.state.lon+"&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM",
 				dataType: "jsonp",
 				success: this.parseResponse,
 				error: function(req, err){ console.log('API call failed' + err); }
 			});
-		
-
-		
+				
 	}
 
 	parseResponse = (parsed_json) => {
@@ -366,9 +354,9 @@ export default class home extends Component {
 		});
 
 		//old one
-		//var url = "http://api.aerisapi.com/sunmoon/?p="+this.lat+","+this.lon+"&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
+		//var url = "http://api.aerisapi.com/sunmoon/?p="+this.state.lat+","+this.state.lon+"&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
 
-		var urlMoon = "http://api.aerisapi.com/sunmoon/"+this.lat+","+this.lon+"?&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
+		var urlMoon = "http://api.aerisapi.com/sunmoon/"+this.state.lat+","+this.state.lon+"?&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
 
 		$.ajax({
 			url: urlMoon,
@@ -379,21 +367,21 @@ export default class home extends Component {
 		//Test url:
 		//http://api.aerisapi.com/forecasts/51.5074,-0.127758?filter=3hr&limit=3&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM
 
-		var urlCloud = "http://api.aerisapi.com/forecasts/"+this.lat+","+this.lon+"?filter=3hr&limit=3&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
+		var urlCloud = "http://api.aerisapi.com/forecasts/"+this.state.lat+","+this.state.lon+"?filter=3hr&limit=3&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
 		$.ajax({
 			url: urlCloud,
 			dataType: "jsonp",
 			success: this.parseResponseCloud,
 			error: function(req, err){ console.log('API call failed' + err); }
 		});
-		var urlPrecip = "http://api.aerisapi.com/forecasts/"+this.lat+","+this.lon+"?&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
+		var urlPrecip = "http://api.aerisapi.com/forecasts/"+this.state.lat+","+this.state.lon+"?&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
 		$.ajax({
 			url: urlCloud,
 			dataType: "jsonp",
 			success: this.parseResponsePrecip,
 			error: function(req, err){ console.log('API call failed' + err); }
 		});
-		var urlTemp = "http://api.aerisapi.com/forecasts/"+this.lat+","+this.lon+"?filter=1hr&limit=12&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
+		var urlTemp = "http://api.aerisapi.com/forecasts/"+this.state.lat+","+this.state.lon+"?filter=1hr&limit=12&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
 		$.ajax({
 			url: urlTemp,
 			dataType: "jsonp",
