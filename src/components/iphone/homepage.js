@@ -47,7 +47,7 @@ export default class home extends Component {
 		else
 		{
 			$.ajax({
-				url: "http://api.aerisapi.com/observations/closest?p="+this.state.lat+","+this.state.lon+"&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM",
+				url: "http://api.aerisapi.com/observations/closest?p="+this.state.lat+","+this.state.lon+"&client_id=4waAyyUF8UdcBAqo0q01g&client_secret=iLQq1uFp5QwPqKQKivFDbTUSiOpqBUzsbeDTCwTk",
 				dataType: "jsonp",
 				success: this.parseResponse,
 				error: function(req, err){ console.log('API call failed' + err); }
@@ -80,39 +80,28 @@ export default class home extends Component {
 					</div>
 				</div>
 				<div id = {style.section}>
-					<div class = {style.scrollmenu}>
+					<div class = {style.relative}>	
+						<img src = {this.state.icon0}></img> 
+						<img src = {this.state.icon1}></img> 
+						<img src = {this.state.icon2}></img> 
+						<img src = {this.state.icon3}></img> 
+						<img src = {this.state.icon4}></img> 
+						<img src = {this.state.icon5}></img> 
+						<img src = {this.state.icon6}></img> 
 						
-						{this.state.temp0}
-						{this.state.temp1} 
-						{this.state.temp2} 
-						{this.state.temp3} 
-						{this.state.temp4} 
-						{this.state.temp5} 
-						{this.state.temp6} 
-						{this.state.temp7} 
-						{this.state.temp8} 
-						{this.state.temp9} 
-						{this.state.temp10} 
-						{this.state.temp11}
+						<p class = {style.inScrollText}> 	
+							{this.state.temp0} 
+							{this.state.temp1}  
+							{this.state.temp2}  
+							{this.state.temp3}  
+							{this.state.temp4}  
+							{this.state.temp5}  
+							{this.state.temp6}  
 					
-						</div>
-					<div class = {style.scrollmenu}>
-						<img src = {this.state.icon0}></img> 
-						<img src = {this.state.icon0}></img> 
-						<img src = {this.state.icon0}></img> 
-						<img src = {this.state.icon0}></img> 
-						<img src = {this.state.icon0}></img> 
-						<img src = {this.state.icon0}></img> 
-						<img src = {this.state.icon0}></img> 
-						<img src = {this.state.icon0}></img> 
-						<img src = {this.state.icon0}></img> 
-						<img src = {this.state.icon0}></img> 
-
-
-
+						</p>
 					</div>
+							
 				</div>
-				
 				
 				<div id = {style.overflowHidden}>
 					<div id = {style.overflowAuto}>
@@ -299,7 +288,7 @@ export default class home extends Component {
 
 			//get everything else
 			$.ajax({
-				url: "http://api.aerisapi.com/observations/closest?p="+this.state.lat+","+this.state.lon+"&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM",
+				url: "http://api.aerisapi.com/observations/closest?p="+this.state.lat+","+this.state.lon+"&client_id=4waAyyUF8UdcBAqo0q01g&client_secret=iLQq1uFp5QwPqKQKivFDbTUSiOpqBUzsbeDTCwTk",
 				dataType: "jsonp",
 				success: this.parseResponse,
 				error: function(req, err){ console.log('API call failed' + err); }
@@ -356,9 +345,9 @@ export default class home extends Component {
 		});
 
 		//old one
-		//var url = "http://api.aerisapi.com/sunmoon/?p="+this.state.lat+","+this.state.lon+"&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
+		//var url = "http://api.aerisapi.com/sunmoon/?p="+this.state.lat+","+this.state.lon+"&client_id=4waAyyUF8UdcBAqo0q01g&client_secret=iLQq1uFp5QwPqKQKivFDbTUSiOpqBUzsbeDTCwTk";
 
-		var urlMoon = "http://api.aerisapi.com/sunmoon/"+this.state.lat+","+this.state.lon+"?&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
+		var urlMoon = "http://api.aerisapi.com/sunmoon/"+this.state.lat+","+this.state.lon+"?&client_id=4waAyyUF8UdcBAqo0q01g&client_secret=iLQq1uFp5QwPqKQKivFDbTUSiOpqBUzsbeDTCwTk";
 
 		$.ajax({
 			url: urlMoon,
@@ -367,23 +356,23 @@ export default class home extends Component {
 			error: function(req, err){ console.log('API call failed' + err); }
 		});
 		//Test url:
-		//http://api.aerisapi.com/forecasts/51.5074,-0.127758?filter=3hr&limit=3&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM
+		//http://api.aerisapi.com/forecasts/51.5074,-0.127758?filter=3hr&limit=3&client_id=4waAyyUF8UdcBAqo0q01g&client_secret=iLQq1uFp5QwPqKQKivFDbTUSiOpqBUzsbeDTCwTk
 
-		var urlCloud = "http://api.aerisapi.com/forecasts/"+this.state.lat+","+this.state.lon+"?filter=3hr&limit=3&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
+		var urlCloud = "http://api.aerisapi.com/forecasts/"+this.state.lat+","+this.state.lon+"?filter=3hr&limit=3&client_id=4waAyyUF8UdcBAqo0q01g&client_secret=iLQq1uFp5QwPqKQKivFDbTUSiOpqBUzsbeDTCwTk";
 		$.ajax({
 			url: urlCloud,
 			dataType: "jsonp",
 			success: this.parseResponseCloud,
 			error: function(req, err){ console.log('API call failed' + err); }
 		});
-		var urlPrecip = "http://api.aerisapi.com/forecasts/"+this.state.lat+","+this.state.lon+"?&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
+		var urlPrecip = "http://api.aerisapi.com/forecasts/"+this.state.lat+","+this.state.lon+"?&client_id=4waAyyUF8UdcBAqo0q01g&client_secret=iLQq1uFp5QwPqKQKivFDbTUSiOpqBUzsbeDTCwTk";
 		$.ajax({
 			url: urlCloud,
 			dataType: "jsonp",
 			success: this.parseResponsePrecip,
 			error: function(req, err){ console.log('API call failed' + err); }
 		});
-		var urlTemp = "http://api.aerisapi.com/forecasts/"+this.state.lat+","+this.state.lon+"?filter=1hr&limit=12&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM";
+		var urlTemp = "http://api.aerisapi.com/forecasts/"+this.state.lat+","+this.state.lon+"?filter=1hr&limit=12&client_id=4waAyyUF8UdcBAqo0q01g&client_secret=iLQq1uFp5QwPqKQKivFDbTUSiOpqBUzsbeDTCwTk";
 		$.ajax({
 			url: urlTemp,
 			dataType: "jsonp",
