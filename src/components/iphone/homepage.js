@@ -139,16 +139,16 @@ export default class home extends Component {
 								</div>
 							</div>
 						</div>
-						<div id = {style.chanceOfRain}>
+						{/* <div id = {style.chanceOfRain}>
 							<div class={style.pS}>
 								<p>CHANCE OF RAIN</p>
 							</div>
 							<div class={style.relativeSection}>
 								<div class={style.aSRain}>
-									<p>30%</p>
+									<p>{this.state.ra}</p>
 								</div>
 							</div>
-						</div>
+						</div> */}
 						<div id = {style.moonPhase}>
 							<div class={style.pS}>
 								<p>MOON PHASE</p>
@@ -160,11 +160,11 @@ export default class home extends Component {
 								<div class={style.phase}>
 									<p>{this.state.moonPhase}</p>
 								</div>
-								<div class={style.moonPercent}>
-									<p>13%</p>
-								</div>
+								{/* <div class={style.moonPercent}>
+									<p>{this.state.moonPercent}%</p>
+								</div> */}
 								<div class={style.moonDistance}>
-									<p>Moon Distance: 405,905km</p>
+									<p>Moon Distance: {this.state.moonDistance}km</p>
 								</div>
 							</div>
 						</div>
@@ -174,11 +174,11 @@ export default class home extends Component {
 							</div>
 							<div class= {style.relativeSection}>
 								<div class= {style.aSWind}>
-									<img src="rsz_wind.png" alt="Wind"/>
+									{/* <img src="rsz_wind.png" alt="Wind"/> */}
 								</div>
 								<div class= {style.windInfo}>
-									<p>14 mph</p>
-									<p>North-west</p>
+									<p>{this.state.windSpeed} mph</p>
+									<p>{this.state.windDirection}</p>
 								</div>
 							</div>
 						</div>
@@ -188,7 +188,7 @@ export default class home extends Component {
 							</div>
 							<div class={style.relativeSection}>
 								<div class={style.skyInfo}>
-									<p>16Km</p>
+									<p>{this.state.visibility}m</p>
 								</div>
 							</div>
 						</div>
@@ -198,13 +198,13 @@ export default class home extends Component {
 							</div>
 							<div class= {style.relativeSection}>
 								<div class= {style.aSSun}>
-									<img src="rsz_sunrise.png" alt="Sunrise"/>
+									{/* <img src="rsz_sunrise.png" alt="Sunrise"/> */}
 								</div>
 								<div class={style.sunriseInfo}>
 									<p>{this.state.sunrise}</p>
 								</div>
 								<div class={style.aSSunset}>
-									<img src="rsz_sunset.png" alt="Sunset"/>
+									{/* <img src="rsz_sunset.png" alt="Sunset"/> */}
 								</div>
 								<div class={style.sunsetInfo}>
 									<p>{this.state.sunset}</p>
@@ -217,7 +217,7 @@ export default class home extends Component {
 							</div>
 							<div class={style.relativeSection}>
 								<div class={style.humidityInfo}>
-									<p>56%</p>
+									<p>{this.state.humidity}%</p>
 								</div>
 							</div>
 						</div>
@@ -227,32 +227,32 @@ export default class home extends Component {
 							</div>
 							<div class={style.relativeSection}>
 								<div class={style.precipitationInfo}>
-									<p>0.0057 in</p>
+									<p>{this.state.precipitation} mm</p>
 								</div>
 							</div>
 						</div>
-						<div id = {style.pollution}>
+						{/* <div id = {style.pollution}>
 							<div class={style.pS}>
 								<p>POLLUTION LEVEL</p>
 							</div>
 							<div class={style.relativeSection}>
 								<div class={style.pollutionStatus}>
-									<p>VERY LOW</p>
+									<p>{this.state.}</p>
 								</div>
 
 								<div class={style.pollutionInfo}>
 									<p>14 (AQI)</p>
 								</div>
 							</div>
-						</div>
+						</div> */}
 						<div id = {style.pressure}>
 							<div class={style.pS}>
 								<p>PRESSURE</p>
 							</div>
 							<div class={style.relativeSection}>
-								<div class={style.pressureInfo}>
-									<p>1005 hPa</p>
-								</div>
+								{/* <div class={style.pressureInfo}>
+									<p>{this.state.pressure}hPa</p>
+								</div> */}
 							</div>
 						</div>
 						<div id = {style.astroTwilight}>
@@ -263,15 +263,15 @@ export default class home extends Component {
 								<div class={style.start}>
 									<p>Moonrise</p>
 								</div>
-								<div class={style.aTStartInfo}>
+								{/* <div class={style.aTStartInfo}>
 									<p>{this.state.moonrise}</p>
-								</div>
-								<div class={style.end}>
+								</div> */}
+								{/* <div class={style.end}>
 									<p>Moonset</p>
 								</div>
 								<div class={style.aTEndInfo}>
 									<p>{this.state.moonset}</p>
-								</div>
+								</div> */}
 							</div>
 						</div>
 					</div>
@@ -439,7 +439,9 @@ export default class home extends Component {
 		 *
 		 * @Returns the expected precipitation taking into account the next 7 days.
 		*/
-		this.setState({precipitation: parsed_json.response[0].periods[0].precipMM});
+		this.setState({
+			precipitation: parsed_json.response[0].periods[0].precipMM
+		});
 		console.log(parsed_json);
 	}
 	parseResponseTemp = (parsed_json) =>
