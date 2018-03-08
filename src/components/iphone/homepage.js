@@ -58,11 +58,7 @@ export default class home extends Component {
 		else
 		{
 			$.ajax({
-<<<<<<< HEAD
-				url: "http://api.aerisapi.com/observations/closest?p="+this.state.lat+","+this.state.lon+"&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO",
-=======
 				url: "http://api.aerisapi.com/observations/closest?p="+this.state.lat+","+this.state.lon+"&client_id=KYsdhz8O8WbuNwX2whwnq&client_secret=INhy5b5Pwcd7fbonr5eTOp8qzpiIiHSxT7V0BC6B",
->>>>>>> master
 				dataType: "jsonp",
 				success: this.parseResponse,
 				error: function(req, err){ console.log('API call failed' + err); }
@@ -96,41 +92,6 @@ export default class home extends Component {
 					</div>
 				</div>
 				<div id = {style.section}>
-<<<<<<< HEAD
-				<div class={style.scrollmenu}>
-					<table class = {style.table}>
-
-						<tr>
-						<td><img src = {this.state.icon0}></img> </td>
-						<td><img src = {this.state.icon1}></img> </td>
-						<td><img src = {this.state.icon2}></img> </td>
-						<td><img src = {this.state.icon3}></img> </td>
-						<td><img src = {this.state.icon4}></img> </td>
-						<td><img src = {this.state.icon5}></img> </td>
-						<td><img src = {this.state.icon6}></img> </td>
-						<td><img src = {this.state.icon7}></img> </td>
-						<td><img src = {this.state.icon8}></img> </td>
-						<td><img src = {this.state.icon9}></img> </td>
-						<td><img src = {this.state.icon10}></img> </td>
-						<td><img src = {this.state.icon11}></img> </td>
-						</tr>
-						<tr>
-						<td>{this.state.temp0}°</td>
-						<td>{this.state.temp1}°</td>
-						<td>{this.state.temp2}°</td>
-						<td>{this.state.temp3}°</td>
-						<td>{this.state.temp4}°</td>
-						<td>{this.state.temp5}°</td>
-						<td>{this.state.temp6}°</td>
-						<td>{this.state.temp7}°</td>
-						<td>{this.state.temp8}°</td>
-						<td>{this.state.temp9}°</td>
-						<td>{this.state.temp10}°</td>
-						<td>{this.state.temp11}°</td>
-						</tr>
-					</table>
-				</div>	
-=======
 					<div class = {style.scrollmenu}>
 						<img src = {this.state.icon0}></img> <img src = {this.state.icon1}></img> <img src = {this.state.icon2}></img> <img src = {this.state.icon3}></img> <img src = {this.state.icon4}></img> <img src = {this.state.icon5}></img> <img src = {this.state.icon6}></img> <img src = {this.state.icon7}></img> <img src = {this.state.icon8}></img> <img src = {this.state.icon9}></img> <img src = {this.state.icon10}></img> <img src = {this.state.icon11}></img>
 
@@ -140,7 +101,6 @@ export default class home extends Component {
 						</p>
 					</div>
 
->>>>>>> master
 				</div>
 
 				<div id = {style.overflowHidden}>
@@ -331,17 +291,6 @@ export default class home extends Component {
 			error: function(req, err){ console.log('API call failed' + err); }
 		});
 
-<<<<<<< HEAD
-			//get everything else
-			$.ajax({
-				url: "http://api.aerisapi.com/observations/closest?p="+this.state.lat+","+this.state.lon+"&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO",
-				dataType: "jsonp",
-				success: this.parseResponse,
-				error: function(req, err){ console.log('API call failed' + err); }
-			});
-				
-=======
->>>>>>> master
 	}
 
 	parseResponse = (parsed_json) => {
@@ -389,14 +338,7 @@ export default class home extends Component {
 			sunset: (((((sunset.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((sunset.split("T")[1]).split("+"))[0]).split(":"))[1])
 		});
 
-<<<<<<< HEAD
-		//old one
-		//var url = "http://api.aerisapi.com/sunmoon/?p="+this.state.lat+","+this.state.lon+"&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO";
-
-		var urlMoon = "http://api.aerisapi.com/sunmoon/"+this.state.lat+","+this.state.lon+"?&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO";
-=======
 		var urlMoon = "http://api.aerisapi.com/sunmoon/"+this.state.lat+","+this.state.lon+"?&client_id=KYsdhz8O8WbuNwX2whwnq&client_secret=INhy5b5Pwcd7fbonr5eTOp8qzpiIiHSxT7V0BC6B";
->>>>>>> master
 
 		$.ajax({
 			url: urlMoon,
@@ -405,37 +347,23 @@ export default class home extends Component {
 			error: function(req, err){ console.log('API call failed' + err); }
 		});
 		//Test url:
-<<<<<<< HEAD
-		//http://api.aerisapi.com/forecasts/51.5074,-0.127758?filter=3hr&limit=3&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO
-
-		var urlCloud = "http://api.aerisapi.com/forecasts/"+this.state.lat+","+this.state.lon+"?filter=3hr&limit=3&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO";
-=======
 		//http://api.aerisapi.com/forecasts/51.5074,-0.127758?filter=3hr&limit=3&client_id=KYsdhz8O8WbuNwX2whwnq&client_secret=INhy5b5Pwcd7fbonr5eTOp8qzpiIiHSxT7V0BC6B
 
 		var urlCloud = "http://api.aerisapi.com/forecasts/"+this.state.lat+","+this.state.lon+"?filter=3hr&limit=3&client_id=KYsdhz8O8WbuNwX2whwnq&client_secret=INhy5b5Pwcd7fbonr5eTOp8qzpiIiHSxT7V0BC6B";
->>>>>>> master
 		$.ajax({
 			url: urlCloud,
 			dataType: "jsonp",
 			success: this.parseResponseCloud,
 			error: function(req, err){ console.log('API call failed' + err); }
 		});
-<<<<<<< HEAD
-		var urlPrecip = "http://api.aerisapi.com/forecasts/"+this.state.lat+","+this.state.lon+"?&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO";
-=======
 		var urlPrecip = "http://api.aerisapi.com/forecasts/"+this.state.lat+","+this.state.lon+"?&client_id=KYsdhz8O8WbuNwX2whwnq&client_secret=INhy5b5Pwcd7fbonr5eTOp8qzpiIiHSxT7V0BC6B";
->>>>>>> master
 		$.ajax({
 			url: urlCloud,
 			dataType: "jsonp",
 			success: this.parseResponsePrecip,
 			error: function(req, err){ console.log('API call failed' + err); }
 		});
-<<<<<<< HEAD
-		var urlTemp = "http://api.aerisapi.com/forecasts/"+this.state.lat+","+this.state.lon+"?filter=1hr&limit=12&client_id=LjX7d3shjnQkIOoUvzkPy&client_secret=Xq3gn57MIiP3N7PSbqPAdsmobfZKqilLftOGZ3bO";
-=======
 		var urlTemp = "http://api.aerisapi.com/forecasts/"+this.state.lat+","+this.state.lon+"?filter=1hr&limit=12&client_id=KYsdhz8O8WbuNwX2whwnq&client_secret=INhy5b5Pwcd7fbonr5eTOp8qzpiIiHSxT7V0BC6B";
->>>>>>> master
 		$.ajax({
 			url: urlTemp,
 			dataType: "jsonp",
