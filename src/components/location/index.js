@@ -60,8 +60,7 @@ export default class locationButton extends Component{
               <div class={ style.header}>
                 <form>
                   <PlacesAutocomplete inputProps={inputProps} />
-									<Link href = {'/'} onClick={this.handleClickSubmit} class={style.button}></Link>
-								
+									  <button type="button" onClick={this.handleClickSubmit} class={style.buttonSubmit}></button>
                 </form>
 								
     			    </div>
