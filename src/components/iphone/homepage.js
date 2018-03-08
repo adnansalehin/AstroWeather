@@ -83,8 +83,9 @@ export default class home extends Component {
 
 					</div>
 					<div class={style.relative}>
-						<p>{ this.state.date }</p>
+						<p>date: { this.state.date } time: { this.state.time}  hour:{ this.state.hour } min:{ this.state.minute }</p>
 						<h1>{ this.state.locate }</h1>
+						<p></p>
 						<div class={style.pH}>
 							<p>Current Cloud Cover: {this.state.currentCloud}%</p>
 						</div>
@@ -301,8 +302,9 @@ export default class home extends Component {
 		*/
 		console.log(parsed_json);
 
-		var date = parsed_json.response[0].obDateTime;
-		var time = parsed_json.response[0].obDateTime;
+		//var date = parsed_json.response[0].obDateTime;
+		var date = new Date().toISOString();
+		var time = date;
 		var path = parsed_json.response[0].ob;
 
 
@@ -382,10 +384,15 @@ export default class home extends Component {
 		var moonPercent = path.phase.illum;
 		var moonrise = path.riseISO;
 		var moonset = path.setISO;
-		var time = parsed_json.response[0].dateTimeISO;
-
+		//var time = parsed_json.response[0].dateTimeISO;
+		var time = new Date().toISOString();
+		time = (((((time.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((time.split("T")[1]).split("+"))[0]).split(":"))[1]);
+		var hour = time.split(":")[0];
+		var minute = time.split(":")[1];
 		this.setState({
-			time: (((((time.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((time.split("T")[1]).split("+"))[0]).split(":"))[1]),
+			time: time,
+			hour: hour,
+			minute: minute,
 			moonPercent: moonPercent,
 			moonPhase: moonPhase,
 			moonrise: (((((moonrise.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((moonrise.split("T")[1]).split("+"))[0]).split(":"))[1]),
