@@ -80,38 +80,40 @@ export default class home extends Component {
 					</div>
 				</div>
 				<div id = {style.section}>
-					<div class={style.pLU}>
-						<p>Last updated: {this.state.time} </p>
-					</div>
-					<div id = {style.temperature}>
-					<p> {this.state.temp}</p>
-						{/* <div id={style.weather} class="carousel slide" data-ride="carousel">
-							<div class="carousel-inner">
-								<div class="item-active">
-									<br/>
-									<img src={this.state.icon0} alt={this.state.icon0}/>
-									<p>Temperature: {this.state.temp0}</p>
-								</div>
-								<div class="item">
-									<br/>
-									<img src={this.state.icon1} alt={this.state.icon1}/>
-									<p>Temperature: {this.state.temp1}</p>
-								</div>
-								<div class="item">
-	     							<img src="rsz_apples.jpg" alt=""/>
-	    						</div>
-							</div>
-							<a class="left carousel-control" href="#weather" data-slide="prev">
-								<span class="glyphicon glyphicon-chevron-left"></span>
-								<span class="sr-only">Previous</span>
-						  	</a>
-							  <a class="right carousel-control" href="#weather" data-slide="next">
-								<span class="glyphicon glyphicon-chevron-right"></span>
-								<span class="sr-only">Next</span>
-							</a>
-						</div> */}
+					<div class = {style.scrollmenu}>
+						
+						{this.state.temp0}
+						{this.state.temp1} 
+						{this.state.temp2} 
+						{this.state.temp3} 
+						{this.state.temp4} 
+						{this.state.temp5} 
+						{this.state.temp6} 
+						{this.state.temp7} 
+						{this.state.temp8} 
+						{this.state.temp9} 
+						{this.state.temp10} 
+						{this.state.temp11}
+					
+						</div>
+					<div class = {style.scrollmenu}>
+						<img src = {this.state.icon0}></img> 
+						<img src = {this.state.icon0}></img> 
+						<img src = {this.state.icon0}></img> 
+						<img src = {this.state.icon0}></img> 
+						<img src = {this.state.icon0}></img> 
+						<img src = {this.state.icon0}></img> 
+						<img src = {this.state.icon0}></img> 
+						<img src = {this.state.icon0}></img> 
+						<img src = {this.state.icon0}></img> 
+						<img src = {this.state.icon0}></img> 
+
+
+
 					</div>
 				</div>
+				
+				
 				<div id = {style.overflowHidden}>
 					<div id = {style.overflowAuto}>
 						<div id = {style.cloudCover}>
@@ -281,7 +283,7 @@ export default class home extends Component {
 	}
 
 	
-	iconRoot = "/assets/weatherSD/";
+	iconRoot = "/assets/weatherIcons/";
 	// range from 0 to 2
 	cloudInterval=0;
 	parseAll = (parsed_json) =>
