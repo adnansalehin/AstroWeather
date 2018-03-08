@@ -19,7 +19,8 @@ export default class home extends Component {
 	constructor(props){
 		super(props);
         console.log("printed in home page lat" + this.props.lat);
-        console.log("printed in home page lon" + this.props.lon);
+		console.log("printed in home page lon" + this.props.lon);
+		console.log("printed in home page city" + this.props.city);
 		this.state.temp = "";
 		// button display state
 		this.setState({ display: false });
@@ -27,7 +28,9 @@ export default class home extends Component {
 		this.fetchWeatherData();
 	
 	}
-	
+	// global variables
+	lat;
+	lon;
 	
 	fetchWeatherData = () => {
 		if(typeof this.props.lon === "undefined")
@@ -41,12 +44,20 @@ export default class home extends Component {
 		}
 		else
 		{
+			this.setState({
+				locate: this.props.city,
+				lat: this.props.lat,
+				lon: this.props.lon
+			});
+
 			$.ajax({
 				url: "http://api.aerisapi.com/observations/closest?p="+this.props.lat+","+this.props.lon+"&client_id=97vTvh4PH85jyKV2zqioo&client_secret=dsPijAxOaNCwVSMpisEIYA7OhuKWnRSOZMJGTBOM",
 				dataType: "jsonp",
 				success: this.parseResponse,
 				error: function(req, err){ console.log('API call failed' + err); }
+
 			});
+
 		}
 	}
 	
@@ -78,7 +89,8 @@ export default class home extends Component {
 						<p>Last updated: {this.state.time} </p>
 					</div>
 					<div id = {style.temperature}>
-						<div id={style.weather} class="carousel slide" data-ride="carousel">
+					<p> {this.state.temp}</p>
+						{/* <div id={style.weather} class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
 								<div class="item-active">
 									<br/>
@@ -102,7 +114,7 @@ export default class home extends Component {
 								<span class="glyphicon glyphicon-chevron-right"></span>
 								<span class="sr-only">Next</span>
 							</a>
-						</div>
+						</div> */}
 					</div>
 				</div>
 				<div id = {style.overflowHidden}>
@@ -273,9 +285,7 @@ export default class home extends Component {
 		);
 	}
 
-	// global variables
-	lat;
-	lon;
+	
 	iconRoot = "/assets/weatherSD/";
 	// range from 0 to 2
 	cloudInterval=0;
@@ -417,6 +427,7 @@ export default class home extends Component {
 	}
 	parseResponseCloud = (parsed_json) =>
 	{
+		console.log(parsed_json);
 		// var cloudCover0 = 0;
 		// var cloudCover1 = 0;
 		// var cloudCover2 = 0;

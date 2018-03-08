@@ -29,11 +29,11 @@ export default class Iphone extends Component {
 		// this.state.city = "0.12";
 	}
 
-	changeLocation = (newLat, newLong) =>{
+	changeLocation = (newLat, newLong, newCity) =>{
 		this.setState({
 			lat:newLat,
 			lon:newLong,
-		
+			city:newCity,
 		});
 	}
 
@@ -41,7 +41,7 @@ export default class Iphone extends Component {
 	render() {
 		return (
 			<Router history = {browserHistory}>
-				<Route path="/" component={() => <Home lat={this.state.lat} lon={this.state.lon}/> }/>
+				<Route path="/" component={() => <Home lat={this.state.lat} lon={this.state.lon} city={this.state.city}/> }/>
 				<Route path="/locations" component={() => <Location lat={this.state.lat} lon={this.state.lon} changeLocation = {this.changeLocation}/> }/>
 			</Router>
 		);

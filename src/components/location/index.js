@@ -30,9 +30,10 @@ export default class locationButton extends Component{
       var arrofAddress = tmp.split(", ");
       var lengthofArr = arrofAddress.length;
       var newLat = tmpLat;
-      var newLong = tmpLng;
-      console.log(arrofAddress[lengthofArr-3],arrofAddress[lengthofArr-1],arrofAddress[lengthofArr-2],newLat,newLong);
-      this.props.changeLocation(newLat,newLong);
+			var newLong = tmpLng;
+			var newCity = arrofAddress[0];
+      console.log(arrofAddress, newCity,newLat,newLong);
+      this.props.changeLocation(newLat,newLong, newCity);
 		}
 		
     render() {
