@@ -272,7 +272,13 @@ export default class home extends Component {
 		);
 	}
 
+	// relative path to icons
 	iconRoot = "/assets/weatherIcons/";
+
+	/**
+	 * Parse location JSON response
+	 * Then call the main API and initiate parseResponse method to get all the other data
+ 	 */
 	parseAll = (parsed_json) =>
 	{
 		//get location
@@ -295,7 +301,7 @@ export default class home extends Component {
 
 	parseResponse = (parsed_json) => {
 
-		/*
+		/**
 		 * @Rsponse body details: https://www.aerisweather.com/support/docs/api/reference/endpoints/observations/
 		 *
 		 * @Returns the following observations (and more) as a json document.
@@ -413,7 +419,7 @@ export default class home extends Component {
 	}
 	parseResponseMoonWunder = (parsed_json) =>
 	{
-		/*
+		/**
 		 * @Rsponse body details: https://www.wunderground.com/weather/api/d/docs?d=data/astronomy&MR=1
 		 *
 		 * @Returns
@@ -468,7 +474,7 @@ export default class home extends Component {
 	}
 	parseResponseTemp = (parsed_json) =>
 	{
-		/*
+		/**
 		 * @Rsponse body details: https://www.aerisweather.com/support/docs/api/reference/endpoints/forecasts/
 		 *
 		 * @Returns the expected temeratures in the next 12 hours, starting at the next hour.
