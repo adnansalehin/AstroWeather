@@ -7,6 +7,8 @@
  Secret Key
  INhy5b5Pwcd7fbonr5eTOp8qzpiIiHSxT7V0BC6B
 
+ wunderground key: 0d7044a302a2fea4
+
  */
 
 // import preact
@@ -87,13 +89,30 @@ export default class home extends Component {
 						<h1>{ this.state.locate }</h1>
 						<p></p>
 						<div class={style.pH}>
-							<p>Current Cloud Cover: {this.state.currentCloud}%</p>
+							<p>Cloud Cover: {this.state.currentCloud}%</p>
 						</div>
 					</div>
 				</div>
 					<div id = {style.section}>
+						<span>
+							Last updated: {this.state.time}
+						</span>
 						<div class={style.scrollmenu}>
 							<table class = {style.table}>
+								<tr>
+									<td> Now: </td>
+									<td> +1 hr: </td>
+									<td> +2 hrs: </td>
+									<td> +3 hrs: </td>
+									<td> +4 hrs: </td>
+									<td> +5 hrs: </td>
+									<td> +6 hrs: </td>
+									<td> +7 hrs: </td>
+									<td> +8 hrs: </td>
+									<td> +9 hrs: </td>
+									<td> +10 hrs: </td>
+									<td> +11 hrs: </td>
+								</tr>
 								<tr>
 									<td><img src = {this.state.icon0}></img> </td>
 									<td><img src = {this.state.icon1}></img> </td>
@@ -123,15 +142,14 @@ export default class home extends Component {
 									<td>{this.state.temp11}°</td>
 								</tr>
 							</table>
-						</div>	
-
+						</div>
 					</div>
 
 				<div id = {style.overflowHidden}>
 					<div id = {style.overflowAuto}>
 						<div id = {style.cloudCover}>
 							<div class={style.pS}>
-								<p>CLOUD COVER</p>
+								<p>CLOUD COVER FORECAST</p>
 							</div>
 							<div class={style.relativeSection}>
 								<div class={style.absoluteSection}>
@@ -154,23 +172,13 @@ export default class home extends Component {
 								</div>
 							</div>
 						</div>
-						{/* <div id = {style.chanceOfRain}>
-							<div class={style.pS}>
-								<p>CHANCE OF RAIN</p>
-							</div>
-							<div class={style.relativeSection}>
-								<div class={style.aSRain}>
-									<p>{this.state.ra}</p>
-								</div>
-							</div>
-						</div> */}
 						<div id = {style.moonPhase}>
 							<div class={style.pS}>
 								<p>MOON PHASE</p>
 							</div>
 							<div class={style.relativeSection}>
 								<div class={style.aSMoon}>
-									{/* <img src="Moon\Waning Crescent.png" alt="Waning Crescent"/> */}
+									<img src={this.state.moonImg} alt="moon phse"/>
 								</div>
 								<div class={style.phase}>
 									<p>{this.state.moonPhase}</p>
@@ -179,7 +187,20 @@ export default class home extends Component {
 									<p>{this.state.moonPercent}%</p>
 								</div>
 								<div class={style.moonDistance}>
-									<p>Moon Distance: {this.state.moonDistance}km</p>
+									<p>Moon Distance: {this.state.moonDistance} km</p>
+								</div>
+							</div>
+						</div>
+						<div id = {style.astroTwilight}>
+							<div class={style.pS}>
+								<p>MOONRISE & MOONSET</p>
+							</div>
+							<div class={style.relativeSection}>
+								<div class={style.aTStartInfo}>
+									<p>Moonrise: {this.state.moonrise}</p>
+								</div>
+								<div class={style.aTEndInfo}>
+									<p>Moonset: {this.state.moonset}</p>
 								</div>
 							</div>
 						</div>
@@ -188,22 +209,18 @@ export default class home extends Component {
 								<p>WIND</p>
 							</div>
 							<div class= {style.relativeSection}>
-								<div class= {style.aSWind}>
-									{/* <img src="rsz_wind.png" alt="Wind"/> */}
-								</div>
 								<div class= {style.windInfo}>
-									<p>{this.state.windSpeed} mph</p>
-									<p>{this.state.windDirection}</p>
+									<p>{this.state.windSpeed} mph towards {this.state.windDirection}</p>
 								</div>
 							</div>
 						</div>
 						<div id = {style.skyVisability}>
 							<div class={style.pS}>
-								<p>SKY VISABILITY</p>
+								<p>VISABILITY</p>
 							</div>
 							<div class={style.relativeSection}>
 								<div class={style.skyInfo}>
-									<p>{this.state.visibility}mi</p>
+									<p>{this.state.visibility} miles</p>
 								</div>
 							</div>
 						</div>
@@ -212,14 +229,8 @@ export default class home extends Component {
 								<p>SUNRISE & SUNSET</p>
 							</div>
 							<div class= {style.relativeSection}>
-								<div class= {style.aSSun}>
-									{/* <img src="rsz_sunrise.png" alt="Sunrise"/> */}
-								</div>
 								<div class={style.sunriseInfo}>
 									<p>Sunrise: {this.state.sunrise}</p>
-								</div>
-								<div class={style.aSSunset}>
-									{/* <img src="rsz_sunset.png" alt="Sunset"/> */}
 								</div>
 								<div class={style.sunsetInfo}>
 									<p>Sunset: {this.state.sunset}</p>
@@ -246,20 +257,6 @@ export default class home extends Component {
 								</div>
 							</div>
 						</div>
-						{/* <div id = {style.pollution}>
-							<div class={style.pS}>
-								<p>POLLUTION LEVEL</p>
-							</div>
-							<div class={style.relativeSection}>
-								<div class={style.pollutionStatus}>
-									<p>{this.state.}</p>
-								</div>
-
-								<div class={style.pollutionInfo}>
-									<p>14 (AQI)</p>
-								</div>
-							</div>
-						</div> */}
 						<div id = {style.pressure}>
 							<div class={style.pS}>
 								<p>PRESSURE</p>
@@ -270,31 +267,11 @@ export default class home extends Component {
 								</div>
 							</div>
 						</div>
-						<div id = {style.astroTwilight}>
-							<div class={style.pS}>
-								<p>MOONRISE & MOONSET</p>
-							</div>
-							<div class={style.relativeSection}>
-								<div class={style.start}>
-									<p>Moonrise: </p>
-								</div>
-								<div class={style.aTStartInfo}>
-									<p>{this.state.moonrise}</p>
-								</div>}
-								<div class={style.end}>
-									<p>Moonset: </p>
-								</div>
-								<div class={style.aTEndInfo}>
-									<p>{this.state.moonset}</p>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
 		);
 	}
-
 
 	iconRoot = "/assets/weatherIcons/";
 	parseAll = (parsed_json) =>
@@ -328,7 +305,10 @@ export default class home extends Component {
 
 		//var date = parsed_json.response[0].obDateTime;
 		var date = new Date().toISOString();
-		var time = date;
+		var time = new Date().toISOString();
+		time = (((((time.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((time.split("T")[1]).split("+"))[0]).split(":"))[1]);
+		var hour = time.split(":")[0];
+		var minute = time.split(":")[1];
 		var path = parsed_json.response[0].ob;
 
 
@@ -342,13 +322,14 @@ export default class home extends Component {
 		var sunset = path.sunsetISO;
 		var currentCloud = path.sky;
 		var pressure = path.pressureMB;
-		var icon = path.icon;
 
 
 		// set states for fields so they could be rendered later on
 		this.setState({
 			date: ((((date.split("T")[0]).split("-"))[2])+"."+(((date.split("T")[0]).split("-"))[1])+"."+(((date.split("T")[0]).split("-"))[0])),
-			time: (((((time.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((time.split("T")[1]).split("+"))[0]).split(":"))[1]),
+			time: time,
+			hour: hour,
+			minute: minute,
 			temp: temp_c,
 			cond: weatherType,
 			windDirection: this.windDirectionTypes[windDirection],
@@ -357,7 +338,6 @@ export default class home extends Component {
 			windSpeed: windSpeed,
 			currentCloud: currentCloud,
 			pressure: pressure,
-			icon: "/assets/weatherSD/"+icon,
 			sunrise: (((((sunrise.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((sunrise.split("T")[1]).split("+"))[0]).split(":"))[1]),
 			sunset: (((((sunset.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((sunset.split("T")[1]).split("+"))[0]).split(":"))[1])
 		});
@@ -368,31 +348,45 @@ export default class home extends Component {
 			url: urlMoon,
 			dataType: "jsonp",
 			success: this.parseResponseMoon,
-			error: function(req, err){ console.log('API call failed' + err); }
+			error: function(req, err){ console.log('API call failed ' + err); }
 		});
-		//Test url:
-		//http://api.aerisapi.com/forecasts/51.5074,-0.127758?filter=3hr&limit=3&client_id=KYsdhz8O8WbuNwX2whwnq&client_secret=INhy5b5Pwcd7fbonr5eTOp8qzpiIiHSxT7V0BC6B
+
+		var urlMoonWunder = "http://api.wunderground.com/api/0d7044a302a2fea4/astronomy/q/"+this.state.lat+","+this.state.lon+".json";
+		$.ajax({
+			url: urlMoonWunder,
+			dataType: "jsonp",
+			success: this.parseResponseMoonWunder,
+			error: function(req, err){ console.log('API call failed ' + err); }
+		});
+
+		var urlMoonDist = "http://api.burningsoul.in/moon";
+
+		$.ajax({
+			url: urlMoonDist,
+			success: this.parseResponseMoonDistance,
+			error: function(req, err){ console.log('API call failed ' + err); }
+		});
 
 		var urlCloud = "http://api.aerisapi.com/forecasts/"+this.state.lat+","+this.state.lon+"?filter=3hr&limit=3&client_id=KYsdhz8O8WbuNwX2whwnq&client_secret=INhy5b5Pwcd7fbonr5eTOp8qzpiIiHSxT7V0BC6B";
 		$.ajax({
 			url: urlCloud,
 			dataType: "jsonp",
 			success: this.parseResponseCloud,
-			error: function(req, err){ console.log('API call failed' + err); }
+			error: function(req, err){ console.log('API call failed ' + err); }
 		});
 		var urlPrecip = "http://api.aerisapi.com/forecasts/"+this.state.lat+","+this.state.lon+"?&client_id=KYsdhz8O8WbuNwX2whwnq&client_secret=INhy5b5Pwcd7fbonr5eTOp8qzpiIiHSxT7V0BC6B";
 		$.ajax({
 			url: urlCloud,
 			dataType: "jsonp",
 			success: this.parseResponsePrecip,
-			error: function(req, err){ console.log('API call failed' + err); }
+			error: function(req, err){ console.log('API call failed ' + err); }
 		});
 		var urlTemp = "http://api.aerisapi.com/forecasts/"+this.state.lat+","+this.state.lon+"?filter=1hr&limit=12&client_id=KYsdhz8O8WbuNwX2whwnq&client_secret=INhy5b5Pwcd7fbonr5eTOp8qzpiIiHSxT7V0BC6B";
 		$.ajax({
 			url: urlTemp,
 			dataType: "jsonp",
 			success: this.parseResponseTemp,
-			error: function(req, err){ console.log('API call failed' + err); }
+			error: function(req, err){ console.log('API call failed ' + err); }
 		});
 	}
 
@@ -401,22 +395,15 @@ export default class home extends Component {
 		/*
 		 * @Rsponse body details: https://www.aerisweather.com/support/docs/api/reference/endpoints/sunmoon-moonphases/
 		 * (at bottom of page.)
-		 * @Returns the next 4 cycles. 0 is used here to get cycle 1.
+		 * @Returns
 		*/
 		var path = parsed_json.response[0].moon;
 		var moonPhase = path.phase.name;
 		var moonPercent = path.phase.illum;
 		var moonrise = path.riseISO;
 		var moonset = path.setISO;
-		//var time = parsed_json.response[0].dateTimeISO;
-		var time = new Date().toISOString();
-		time = (((((time.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((time.split("T")[1]).split("+"))[0]).split(":"))[1]);
-		var hour = time.split(":")[0];
-		var minute = time.split(":")[1];
+
 		this.setState({
-			time: time,
-			hour: hour,
-			minute: minute,
 			moonPercent: moonPercent,
 			moonPhase: moonPhase,
 			moonrise: (((((moonrise.split("T")[1]).split("+"))[0]).split(":"))[0])+":"+(((((moonrise.split("T")[1]).split("+"))[0]).split(":"))[1]),
@@ -425,12 +412,36 @@ export default class home extends Component {
 		console.log(parsed_json);
 
 	}
+	parseResponseMoonWunder = (parsed_json) =>
+	{
+		/*
+		 * @Rsponse body details: https://www.wunderground.com/weather/api/d/docs?d=data/astronomy&MR=1
+		 *
+		 * @Returns
+		*/
+		var age = parsed_json.moon_phase.ageOfMoon;
+		var moonImg = "https://www.wunderground.com/graphics/moonpictsnew/moon"+age+".gif";
+		this.setState({moonImg: moonImg});
+
+		console.log(parsed_json);
+	}
+	parseResponseMoonDistance = (parsed_json) =>
+	{
+		/*
+		 * @Rsponse body details: http://api.burningsoul.in/moon
+		 *
+		 * @Returns
+		*/
+		// get distance from core
+		var moonDistance = parsed_json.DFCOE;
+		// subtract Earth's radius to get approximate distance from surface
+		this.setState({moonDistance: (moonDistance-6371)});
+
+		console.log(parsed_json);
+	}
 	parseResponseCloud = (parsed_json) =>
 	{
 		console.log(parsed_json);
-		// var cloudCover0 = 0;
-		// var cloudCover1 = 0;
-		// var cloudCover2 = 0;
 		/*
 		 * @Rsponse body details: https://www.aerisweather.com/support/docs/api/reference/endpoints/forecasts/
 		 *
@@ -478,7 +489,7 @@ export default class home extends Component {
 			temp9: path.periods[9].tempC, icon9: this.iconRoot + path.periods[9].icon,
 			temp10: path.periods[10].tempC, icon10: this.iconRoot + path.periods[10].icon,
 			temp11: path.periods[11].tempC, icon11: this.iconRoot + path.periods[11].icon,
-			
+
 
 		});
 	}
@@ -501,5 +512,4 @@ export default class home extends Component {
 		"NW":"North West",
 		"NNW":"North North West"
 	}
-
 }
