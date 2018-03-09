@@ -85,9 +85,8 @@ export default class home extends Component {
 
 					</div>
 					<div class={style.relative}>
-						<p>{ this.state.date } </p>
+						<h4>{ this.state.date } </h4>
 						<h1>{ this.state.locate }</h1>
-						<p></p>
 						<div class={style.pH}>
 							<p>Cloud Cover: {this.state.currentCloud}%</p>
 						</div>
@@ -191,15 +190,15 @@ export default class home extends Component {
 								</div>
 							</div>
 						</div>
-						<div id = {style.astroTwilight}>
+						<div id = {style.sunRise}>
 							<div class={style.pS}>
 								<p>MOONRISE & MOONSET</p>
 							</div>
-							<div class={style.relativeSection}>
-								<div class={style.aTStartInfo}>
+							<div class= {style.relativeSection}>
+								<div class={style.sunriseInfo}>
 									<p>Moonrise: {this.state.moonrise}</p>
 								</div>
-								<div class={style.aTEndInfo}>
+								<div class={style.sunsetInfo}>
 									<p>Moonset: {this.state.moonset}</p>
 								</div>
 							</div>
@@ -214,9 +213,9 @@ export default class home extends Component {
 								</div>
 							</div>
 						</div>
-						<div id = {style.skyVisability}>
+						<div id = {style.skyVisibility}>
 							<div class={style.pS}>
-								<p>VISABILITY</p>
+								<p>VISIBILITY</p>
 							</div>
 							<div class={style.relativeSection}>
 								<div class={style.skyInfo}>
